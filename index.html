@@ -1,5 +1,3 @@
-<!-- Google tag (gtag.js) -->
-
 <!DOCTYPE html>
 <html lang="es">
 <head>
@@ -77,5 +75,46 @@
     <footer>
         <p>&copy; 2024 Sport & Fitness. Todos los derechos reservados.</p>
     </footer>
+    <!-- Contador de visitas simple -->
+<div class="visitor-counter">
+    <p>Visitas: <span id="visitCount">0</span></p>
+</div>
+
+<script>
+// Contador de visitas simple
+if (typeof(Storage) !== "undefined") {
+    if (localStorage.visitCount) {
+        localStorage.visitCount = Number(localStorage.visitCount) + 1;
+    } else {
+        localStorage.visitCount = 1;
+    }
+    document.getElementById("visitCount").textContent = localStorage.visitCount;
+}
+
+// Detectar dispositivo
+const deviceInfo = {
+    dispositivo: navigator.userAgent,
+    anchoPantalla: screen.width,
+    altoPantalla: screen.height,
+    idioma: navigator.language,
+    plataforma: navigator.platform
+};
+
+console.log("Información del visitante:", deviceInfo);
+</script>
+
+<style>
+.visitor-counter {
+    position: fixed;
+    bottom: 10px;
+    right: 10px;
+    background: #2c3e50;
+    color: white;
+    padding: 10px;
+    border-radius: 5px;
+    font-size: 14px;
+}
+</style>
 </body>
 </html>
+
