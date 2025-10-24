@@ -1,6 +1,6 @@
 class DeviceAnalytics {
     constructor() {
-        this.sheetUrl = 'https://docs.google.com/spreadsheets/d/1xUhYBY4PzQHqbbIMO0p1uOvCgl2TUUmzFwZ0wM5pTXU/edit?usp=sharing'; // Reemplazar con tu Google Apps Script
+        this.sheetUrl = 'https://script.google.com/macros/s/AKfycbzysQwOk3crLVPTQa8pdxyDjAmI4DibHVt83oG8P_j2mPWu4GNp6FJqOQeYYm9eR0ar/exec'; // Reemplazar con tu Google Apps Script
         this.storageKey = 'lastAnalyticsSend';
         this.init();
     }
