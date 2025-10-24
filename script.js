@@ -6,6 +6,43 @@ document.addEventListener('DOMContentLoaded', function() {
     configurarCheckout();
 });
 
+// Configuración Google Sheets
+const SHEET_URL = 'https://script.google.com/macros/s/TU_SCRIPT_ID/exec';
+
+// Función para guardar pedidos
+async function guardarPedido(datosPedido) {
+    const pedido = {
+        fecha: new Date().toLocaleString('es-CL'),
+        nombre: datosPedido.nombre || 'No especificado',
+        email: datosPedido.email || 'No especificado',
+        telefono: datosPedido.telefono || 'No especificado',
+        productos: JSON.stringify(datosPedido.productos),
+        total: datosPedido.total,
+        estado: 'Pendiente'
+    };
+
+    try {
+        const response = await fetch(SHEET_URL, {
+            method: 'POST',
+            body: JSON.stringify(pedido)
+        });
+        
+        return await response.json();
+    } catch (error) {
+        console.error('Error guardando pedido:', error);
+        // Guardar en localStorage como backup
+        guardarPedidoLocal(pedido);
+        return {success: true, message: 'Pedido guardado localmente'};
+    }
+}
+
+// Backup en localStorage
+function guardarPedidoLocal(pedido) {
+    const pedidos = JSON.parse(localStorage.getItem('pedidos_pendientes')) || [];
+    pedidos.push(pedido);
+    localStorage.setItem('pedidos_pendientes', JSON.stringify(pedidos));
+}
+
 // Mostrar productos en el grid
 function mostrarProductos(filtro = 'all') {
     const grid = document.getElementById('products-grid');
