@@ -7,7 +7,7 @@ document.addEventListener('DOMContentLoaded', function() {
 });
 
 // Configuración Google Sheets
-const SHEET_URL = 'https://script.google.com/macros/s/TU_SCRIPT_ID/exec';
+const SHEET_URL = 'https://docs.google.com/spreadsheets/d/16xPgO4vXofr_dZ9vJ0UqoZQopEc13SDrqx4GRAs0zVI/edit?usp=sharing';
 
 // Función para guardar pedidos
 async function guardarPedido(datosPedido) {
