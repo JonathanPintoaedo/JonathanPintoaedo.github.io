@@ -3,10 +3,12 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Sport & Fitness - Tu salud es nuestra prioridad</title>
+    <title>Sport & Fitness - Tienda Online</title>
     <link rel="stylesheet" href="styles.css">
-    
-    <!-- Google Analytics -->
+    <!-- Iconos -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+	
+	<!-- Google Analytics -->
    <script async src="https://www.googletagmanager.com/gtag/js?id=G-8RV6F4PX9X"></script>
 <script>
   window.dataLayer = window.dataLayer || [];
@@ -17,70 +19,86 @@
 </script>
 </head>
 <body>
+    <!-- Header -->
     <header>
         <nav>
             <div class="logo">
-                <h1>Sport & Fitness</h1>
+                <h1>🏋️ Sport & Fitness</h1>
             </div>
-            <ul class="nav-links">
-                <li><a href="#inicio">Inicio</a></li>
-                <li><a href="#servicios">Servicios</a></li>
-                <li><a href="#about">Nosotros</a></li>
-                <li><a href="#contacto">Contacto</a></li>
-            </ul>
+            <div class="nav-icons">
+                <a href="#cart" class="cart-icon">
+                    <i class="fas fa-shopping-cart"></i>
+                    <span id="cart-count">0</span>
+                </a>
+            </div>
         </nav>
     </header>
 
-    <main>
-        <section id="inicio" class="hero">
-            <div class="hero-content">
-                <h2>Transforma tu cuerpo, transforma tu vida</h2>
-                <p>Descubre el poder de un estilo de vida activo y saludable</p>
-                <button class="cta-button">Comenzar Ahora</button>
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="hero-content">
+            <h2>Equipamiento Deportivo Premium</h2>
+            <p>Todo lo que necesitas para tu entrenamiento</p>
+        </div>
+    </section>
+
+    <!-- Catálogo de Productos -->
+    <section class="products-section">
+        <h2>Nuestros Productos</h2>
+        <div class="filters">
+            <button class="filter-btn active" data-filter="all">Todos</button>
+            <button class="filter-btn" data-filter="proteina">Proteínas</button>
+            <button class="filter-btn" data-filter="equipo">Equipamiento</button>
+            <button class="filter-btn" data-filter="ropa">Ropa</button>
+        </div>
+        <div id="products-grid" class="products-grid">
+            <!-- Los productos se cargan dinámicamente con JavaScript -->
+        </div>
+    </section>
+
+    <!-- Carrito de Compras -->
+    <div id="cart-modal" class="modal">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <h2>Tu Carrito</h2>
+            <div id="cart-items" class="cart-items">
+                <!-- Items del carrito -->
             </div>
-        </section>
-
-        <section id="servicios" class="services">
-            <h2>Nuestros Servicios</h2>
-            <div class="services-grid">
-                <div class="service-card">
-                    <h3>Entrenamiento Personal</h3>
-                    <p>Sesiones individualizadas con expertos certificados</p>
-                </div>
-                <div class="service-card">
-                    <h3>Nutrición Deportiva</h3>
-                    <p>Planes alimenticios para maximizar tu rendimiento</p>
-                </div>
-                <div class="service-card">
-                    <h3>Clases Grupales</h3>
-                    <p>Yoga, CrossFit, Spinning y más</p>
-                </div>
+            <div class="cart-total">
+                <h3>Total: $<span id="cart-total">0</span></h3>
+                <button id="checkout-btn" class="checkout-btn">Proceder al Pago</button>
             </div>
-        </section>
-
-        <section id="about" class="about">
-            <h2>¿Por qué elegirnos?</h2>
-            <p>En Sport & Fitness combinamos experiencia, tecnología y pasión para ayudarte a alcanzar tus metas deportivas y de salud.</p>
-        </section>
-
-        <section id="contacto" class="contact">
-            <h2>Contáctanos</h2>
-            <p>Email: info@sportandfitness.cl</p>
-            <p>Teléfono: +56 9 1234 5678</p>
-            <p>Dirección: Av. Deportiva 123, Santiago</p>
-        </section>
-    </main>
-
-    <footer>
-        <p>&copy; 2024 Sport & Fitness. Todos los derechos reservados.</p>
-    </footer>
-    
-    <!-- Contador simple -->
-    <div class="visitor-counter">
-        <p>👥 Visitas: <span id="visitCount">0</span></p>
+        </div>
     </div>
 
-    <script>
+    <!-- Footer -->
+    <footer>
+        <div class="footer-content">
+            <div class="contact-info">
+                <h3>Contacto</h3>
+                <p>📧 info@sportandfitness.cl</p>
+                <p>📞 +56 9 1234 5678</p>
+                <p>📍 Av. Deportiva 123, Santiago</p>
+            </div>
+            <div class="payment-methods">
+                <h3>Métodos de Pago</h3>
+                <div class="payment-icons">
+                    <i class="fab fa-cc-visa"></i>
+                    <i class="fab fa-cc-mastercard"></i>
+                    <i class="fab fa-cc-paypal"></i>
+                </div>
+            </div>
+        </div>
+        <p class="copyright">&copy; 2024 Sport & Fitness. Todos los derechos reservados.</p>
+    </footer>
+
+    <!-- Scripts -->
+    <script src="productos.js"></script>
+    <script src="carrito.js"></script>
+    <script src="script.js"></script>
+	
+	
+	<script>
         // Contador simple de visitas
         if (typeof(Storage) !== "undefined") {
             let visitCount = localStorage.getItem('visitCount') || 0;
