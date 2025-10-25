@@ -1,8 +1,9 @@
-class DeviceAnalytics {
+ //this.formUrl = 'https://docs.google.com/forms/d/e/1FAIpQLSdnpv04gREa735vPJ-vxcQgieKUPJBiCIj2H13lsKmXEE3fEg/formResponse';
+        class DeviceAnalytics {
     constructor() {
         // URL de tu Google Form - ¡REEMPLAZA CON TU ID REAL!
         this.formUrl = 'https://docs.google.com/forms/d/e/1FAIpQLSdnpv04gREa735vPJ-vxcQgieKUPJBiCIj2H13lsKmXEE3fEg/formResponse';
-        this.storageKey = 'lastAnalyticsSend'; 
+        this.storageKey = 'lastAnalyticsSend';
         this.init();
     }
 
@@ -162,21 +163,21 @@ class DeviceAnalytics {
             const formData = new FormData();
             
             // ¡IMPORTANTE! Reemplaza estos entry.XXX con los IDs reales de tu Google Form
-            formData.append('entry.178000833', data.browser);           // Campo 1: Navegador
-            formData.append('entry.2008827157', data.browserVersion);    // Campo 2: Versión
-            formData.append('entry.1247837572', data.os);               // Campo 3: SO
-            formData.append('entry.2111598489', data.platform);         // Campo 4: Plataforma
-            formData.append('entry.1037415434', `${data.screenWidth}x${data.screenHeight}`); // Campo 5: Resolución
-            formData.append('entry.1594877846', `${data.viewportWidth}x${data.viewportHeight}`); // Campo 6: Viewport
-            formData.append('entry.190545701', data.language);         // Campo 7: Idioma
-            formData.append('entry.743852367', data.deviceMemory);     // Campo 8: Memoria
-            formData.append('entry.802418997', data.hardwareConcurrency); // Campo 9: Núcleos CPU
-            formData.append('entry.524976428', data.connectionType);   // Campo 10: Tipo Conexión
-            formData.append('entry.1275374479', data.timezone);         // Campo 11: Zona Horaria
-            formData.append('entry.2009871543', data.url);              // Campo 12: URL
-            formData.append('entry.701918284', data.referrer);         // Campo 13: Referrer
-            formData.append('entry.364468330', data.sessionId);        // Campo 14: Session ID
-            formData.append('entry.348118107', new Date().toLocaleString('es-CL')); // Campo 15: Fecha/Hora
+            formData.append('entry.123456789', data.browser);           // Campo 1: Navegador
+            formData.append('entry.123456790', data.browserVersion);    // Campo 2: Versión
+            formData.append('entry.123456791', data.os);               // Campo 3: SO
+            formData.append('entry.123456792', data.platform);         // Campo 4: Plataforma
+            formData.append('entry.123456793', `${data.screenWidth}x${data.screenHeight}`); // Campo 5: Resolución
+            formData.append('entry.123456794', `${data.viewportWidth}x${data.viewportHeight}`); // Campo 6: Viewport
+            formData.append('entry.123456795', data.language);         // Campo 7: Idioma
+            formData.append('entry.123456796', data.deviceMemory);     // Campo 8: Memoria
+            formData.append('entry.123456797', data.hardwareConcurrency); // Campo 9: Núcleos CPU
+            formData.append('entry.123456798', data.connectionType);   // Campo 10: Tipo Conexión
+            formData.append('entry.123456799', data.timezone);         // Campo 11: Zona Horaria
+            formData.append('entry.123456800', data.url);              // Campo 12: URL
+            formData.append('entry.123456801', data.referrer);         // Campo 13: Referrer
+            formData.append('entry.123456802', data.sessionId);        // Campo 14: Session ID
+            formData.append('entry.123456803', new Date().toLocaleString('es-CL')); // Campo 15: Fecha/Hora
 
             // Enviar al form - usa 'no-cors' para evitar problemas CORS
             const response = await fetch(this.formUrl, {
