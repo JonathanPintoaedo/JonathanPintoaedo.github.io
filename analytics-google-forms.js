@@ -1,7 +1,7 @@
 class DeviceAnalytics {
     constructor() {
         // URL de tu Google Form - ¡REEMPLAZA CON TU ID REAL!
-        this.formUrl = 'https://docs.google.com/forms/d/e/1FAIpQLSeTU_FORM_ID_AQUI/formResponse';
+        this.formUrl = 'https://docs.google.com/forms/u/0/d/e/1FAIpQLSevcROi1nFAIDfvT2trnCzRi1b75_56qQRcHDWNhmD1Pur-4A/formResponse';
         this.storageKey = 'lastAnalyticsSend';
         this.init();
     }
