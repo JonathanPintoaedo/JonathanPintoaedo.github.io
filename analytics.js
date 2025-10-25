@@ -148,7 +148,7 @@ class DeviceAnalytics {
             console.log('Datos del dispositivo:', deviceData);
             
             // Enviar a Google Sheets
-            const success = await this.sendToSheet(deviceData);
+           /* const success = await this.sendToSheet(deviceData);
             
             if (success) {
                 // Marcar como enviado hoy
@@ -221,4 +221,4 @@ document.addEventListener('DOMContentLoaded', function() {
 // Opcional: Enviar analytics cuando la página se cierra o recarga
 window.addEventListener('beforeunload', function() {
     // Podrías enviar datos de tiempo en la página aquí
-});
+});*/
