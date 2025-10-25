@@ -1,4 +1,4 @@
-       class DeviceAnalytics {
+class DeviceAnalytics {
     constructor() {
         this.sheetUrl = 'https://script.google.com/macros/s/AKfycbzysQwOk3crLVPTQa8pdxyDjAmI4DibHVt83oG8P_j2mPWu4GNp6FJqOQeYYm9eR0ar/exec';
         this.storageKey = 'lastAnalyticsSend';
@@ -6,99 +6,68 @@
     }
 
     init() {
-        // Esperar a que la página cargue completamente
-        if (document.readyState === 'loading') {
-            document.addEventListener('DOMContentLoaded', () => {
-                this.checkAndSend();
-            });
-        } else {
-            this.checkAndSend();
-        }
-    }
-
-    checkAndSend() {
         if (!this.shouldSendAnalytics()) {
-            console.log('Analytics ya enviados hoy');
+            console.log('📊 Analytics ya enviados hoy');
             return;
         }
-        this.collectAndSend();
+        
+        // Esperar a que la página cargue
+        setTimeout(() => {
+            this.collectAndSend();
+        }, 1000);
     }
 
     shouldSendAnalytics() {
         const lastSend = localStorage.getItem(this.storageKey);
         if (!lastSend) return true;
-
         const lastSendDate = new Date(lastSend);
         const today = new Date();
-        
         return lastSendDate.toDateString() !== today.toDateString();
     }
 
     collectDeviceData() {
-        const navigator = window.navigator;
-        const screen = window.screen;
-        const windowInfo = window;
-        const connection = navigator.connection || {};
-
         return {
-            // Información básica
             url: window.location.href,
             referrer: document.referrer || 'Directo',
             timestamp: new Date().toISOString(),
             sessionId: this.generateSessionId(),
-
-            // Navegador
             browser: this.getBrowserInfo(),
             browserVersion: this.getBrowserVersion(),
-            userAgent: navigator.userAgent,
-
-            // Sistema
             os: this.getOSInfo(),
             platform: navigator.platform,
             language: navigator.language,
-
-            // Pantalla
             screenWidth: screen.width,
             screenHeight: screen.height,
-            viewportWidth: windowInfo.innerWidth,
-            viewportHeight: windowInfo.innerHeight,
-            colorDepth: screen.colorDepth + ' bits',
-
-            // Hardware
+            viewportWidth: window.innerWidth,
+            viewportHeight: window.innerHeight,
             deviceMemory: (navigator.deviceMemory || 'Desconocido') + ' GB',
             hardwareConcurrency: navigator.hardwareConcurrency || 'Desconocido',
-
-            // Conexión
-            connectionType: connection.effectiveType || 'Desconocido',
-            downlink: connection.downlink || 'Desconocido',
-
-            // Tiempo
+            connectionType: (navigator.connection || {}).effectiveType || 'Desconocido',
             timezone: Intl.DateTimeFormat().resolvedOptions().timeZone
         };
     }
 
     getBrowserInfo() {
-        const userAgent = navigator.userAgent;
-        if (userAgent.includes('Chrome') && !userAgent.includes('Edg')) return 'Chrome';
-        if (userAgent.includes('Firefox')) return 'Firefox';
-        if (userAgent.includes('Safari') && !userAgent.includes('Chrome')) return 'Safari';
-        if (userAgent.includes('Edg')) return 'Edge';
+        const ua = navigator.userAgent;
+        if (ua.includes('Chrome') && !ua.includes('Edg')) return 'Chrome';
+        if (ua.includes('Firefox')) return 'Firefox';
+        if (ua.includes('Safari') && !ua.includes('Chrome')) return 'Safari';
         return 'Otro';
     }
 
     getBrowserVersion() {
-        const userAgent = navigator.userAgent;
-        const temp = userAgent.match(/(Chrome|Firefox|Safari|Edg)\/([0-9.]+)/);
-        return temp ? temp[2] : 'Desconocido';
+        const ua = navigator.userAgent;
+        const match = ua.match(/(Chrome|Firefox|Safari)\/([0-9.]+)/);
+        return match ? match[2] : 'Desconocido';
     }
 
     getOSInfo() {
-        const userAgent = navigator.userAgent;
-        if (userAgent.includes('Windows')) return 'Windows';
-        if (userAgent.includes('Mac')) return 'macOS';
-        if (userAgent.includes('Linux')) return 'Linux';
-        if (userAgent.includes('Android')) return 'Android';
-        if (userAgent.includes('iOS') || userAgent.includes('iPhone') || userAgent.includes('iPad')) return 'iOS';
+        const ua = navigator.userAgent;
+        if (ua.includes('Windows')) return 'Windows';
+        if (ua.includes('Mac')) return 'macOS';
+        if (ua.includes('Linux')) return 'Linux';
+        if (ua.includes('Android')) return 'Android';
+        if (ua.includes('iPhone') || ua.includes('iPad')) return 'iOS';
         return 'Desconocido';
     }
 
@@ -114,15 +83,13 @@
     async collectAndSend() {
         try {
             const deviceData = this.collectDeviceData();
-            console.log('Recolectando datos:', deviceData);
+            console.log('📊 Enviando analytics:', deviceData);
             
             const success = await this.sendToSheet(deviceData);
             
             if (success) {
                 localStorage.setItem(this.storageKey, new Date().toISOString());
                 console.log('✅ Analytics enviados exitosamente');
-            } else {
-                console.log('⚠️ Analytics guardados localmente para reintentar después');
             }
         } catch (error) {
             console.error('❌ Error en analytics:', error);
@@ -130,33 +97,23 @@
     }
 
     async sendToSheet(data) {
-    return new Promise((resolve) => {
-        try {
-            const payload = {
+        return new Promise((resolve) => {
+            const xhr = new XMLHttpRequest();
+            const payload = JSON.stringify({
                 type: 'device_analytics',
                 data: data
-            };
+            });
 
-            console.log('Enviando datos a Sheet...', payload);
-
-            // Usar XMLHttpRequest en lugar de fetch para evitar CORS
-            const xhr = new XMLHttpRequest();
             xhr.open('POST', this.sheetUrl, true);
             xhr.setRequestHeader('Content-Type', 'application/json');
             
             xhr.onreadystatechange = () => {
                 if (xhr.readyState === 4) {
                     if (xhr.status === 200) {
-                        try {
-                            const result = JSON.parse(xhr.responseText);
-                            console.log('✅ Respuesta del servidor:', result);
-                            resolve(result.success);
-                        } catch (parseError) {
-                            console.log('✅ Datos enviados (respuesta no JSON)');
-                            resolve(true);
-                        }
+                        console.log('✅ Datos enviados al servidor');
+                        resolve(true);
                     } else {
-                        console.error('❌ Error HTTP:', xhr.status, xhr.statusText);
+                        console.log('⚠️ Error HTTP, guardando localmente');
                         this.saveForRetry(data);
                         resolve(false);
                     }
@@ -164,27 +121,14 @@
             };
             
             xhr.onerror = () => {
-                console.error('❌ Error de red en XMLHttpRequest');
+                console.log('🌐 Error de red, guardando localmente');
                 this.saveForRetry(data);
                 resolve(false);
             };
             
-            xhr.timeout = 10000; // 10 segundos timeout
-            xhr.ontimeout = () => {
-                console.error('⏰ Timeout en la solicitud');
-                this.saveForRetry(data);
-                resolve(false);
-            };
-            
-            xhr.send(JSON.stringify(payload));
-
-        } catch (error) {
-            console.error('❌ Error en sendToSheet:', error);
-            this.saveForRetry(data);
-            resolve(false);
-        }
-    });
-}
+            xhr.send(payload);
+        });
+    }
 
     saveForRetry(data) {
         const pending = JSON.parse(localStorage.getItem('pendingAnalytics') || '[]');
