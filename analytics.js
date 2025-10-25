@@ -1,64 +1,104 @@
 class DeviceAnalytics {
     constructor() {
-        // REEMPLAZA con tu SCRIPT_ID real
-        this.scriptUrl = 'https://script.google.com/macros/s/AKfycbzysQwOk3crLVPTQa8pdxyDjAmI4DibHVt83oG8P_j2mPWu4GNp6FJqOQeYYm9eR0ar/exec';
+        this.sheetUrl = 'https://script.google.com/macros/s/AKfycbzysQwOk3crLVPTQa8pdxyDjAmI4DibHVt83oG8P_j2mPWu4GNp6FJqOQeYYm9eR0ar/exec';
         this.storageKey = 'lastAnalyticsSend';
         this.init();
     }
 
     init() {
+        // Esperar a que la página cargue completamente
+        if (document.readyState === 'loading') {
+            document.addEventListener('DOMContentLoaded', () => {
+                this.checkAndSend();
+            });
+        } else {
+            this.checkAndSend();
+        }
+    }
+
+    checkAndSend() {
         if (!this.shouldSendAnalytics()) {
-            console.log('📊 Analytics ya enviados hoy');
+            console.log('Analytics ya enviados hoy');
             return;
         }
-        
-        // Esperar a que la página cargue
-        setTimeout(() => {
-            this.sendAnalytics();
-        }, 1500);
+        this.collectAndSend();
     }
 
     shouldSendAnalytics() {
         const lastSend = localStorage.getItem(this.storageKey);
         if (!lastSend) return true;
-        
+
         const lastSendDate = new Date(lastSend);
         const today = new Date();
+        
         return lastSendDate.toDateString() !== today.toDateString();
     }
 
     collectDeviceData() {
+        const navigator = window.navigator;
+        const screen = window.screen;
+        const windowInfo = window;
+        const connection = navigator.connection || {};
+
         return {
+            // Información básica
             url: window.location.href,
+            referrer: document.referrer || 'Directo',
+            timestamp: new Date().toISOString(),
+            sessionId: this.generateSessionId(),
+
+            // Navegador
             browser: this.getBrowserInfo(),
+            browserVersion: this.getBrowserVersion(),
+            userAgent: navigator.userAgent,
+
+            // Sistema
             os: this.getOSInfo(),
+            platform: navigator.platform,
+            language: navigator.language,
+
+            // Pantalla
             screenWidth: screen.width,
             screenHeight: screen.height,
-            viewportWidth: window.innerWidth,
-            viewportHeight: window.innerHeight,
-            language: navigator.language,
-            timezone: Intl.DateTimeFormat().resolvedOptions().timeZone,
-            sessionId: this.generateSessionId(),
-            userAgent: navigator.userAgent.substring(0, 100) // Limitar tamaño
+            viewportWidth: windowInfo.innerWidth,
+            viewportHeight: windowInfo.innerHeight,
+            colorDepth: screen.colorDepth + ' bits',
+
+            // Hardware
+            deviceMemory: (navigator.deviceMemory || 'Desconocido') + ' GB',
+            hardwareConcurrency: navigator.hardwareConcurrency || 'Desconocido',
+
+            // Conexión
+            connectionType: connection.effectiveType || 'Desconocido',
+            downlink: connection.downlink || 'Desconocido',
+
+            // Tiempo
+            timezone: Intl.DateTimeFormat().resolvedOptions().timeZone
         };
     }
 
     getBrowserInfo() {
-        const ua = navigator.userAgent;
-        if (ua.includes('Chrome') && !ua.includes('Edg')) return 'Chrome';
-        if (ua.includes('Firefox')) return 'Firefox';
-        if (ua.includes('Safari') && !ua.includes('Chrome')) return 'Safari';
-        if (ua.includes('Edg')) return 'Edge';
+        const userAgent = navigator.userAgent;
+        if (userAgent.includes('Chrome') && !userAgent.includes('Edg')) return 'Chrome';
+        if (userAgent.includes('Firefox')) return 'Firefox';
+        if (userAgent.includes('Safari') && !userAgent.includes('Chrome')) return 'Safari';
+        if (userAgent.includes('Edg')) return 'Edge';
         return 'Otro';
     }
 
+    getBrowserVersion() {
+        const userAgent = navigator.userAgent;
+        const temp = userAgent.match(/(Chrome|Firefox|Safari|Edg)\/([0-9.]+)/);
+        return temp ? temp[2] : 'Desconocido';
+    }
+
     getOSInfo() {
-        const ua = navigator.userAgent;
-        if (ua.includes('Windows')) return 'Windows';
-        if (ua.includes('Mac')) return 'macOS';
-        if (ua.includes('Linux')) return 'Linux';
-        if (ua.includes('Android')) return 'Android';
-        if (ua.includes('iPhone') || ua.includes('iPad')) return 'iOS';
+        const userAgent = navigator.userAgent;
+        if (userAgent.includes('Windows')) return 'Windows';
+        if (userAgent.includes('Mac')) return 'macOS';
+        if (userAgent.includes('Linux')) return 'Linux';
+        if (userAgent.includes('Android')) return 'Android';
+        if (userAgent.includes('iOS') || userAgent.includes('iPhone') || userAgent.includes('iPad')) return 'iOS';
         return 'Desconocido';
     }
 
@@ -71,146 +111,90 @@ class DeviceAnalytics {
         return sessionId;
     }
 
-    sendAnalytics() {
-        const deviceData = this.collectDeviceData();
-        console.log('📊 Enviando analytics:', deviceData);
-        
-        // Usar Image object para evitar CORS - técnica de pixel tracking
-        this.sendViaImagePixel(deviceData);
-    }
-
-    sendViaImagePixel(data) {
+    async collectAndSend() {
         try {
-            // Codificar datos en URL
-            const encodedData = encodeURIComponent(JSON.stringify(data));
-            const trackingUrl = `${this.scriptUrl}?analytics=true&data=${encodedData}&r=${Math.random()}`;
+            const deviceData = this.collectDeviceData();
+            console.log('Recolectando datos:', deviceData);
             
-            console.log('🖼️ Enviando via pixel:', trackingUrl);
+            const success = await this.sendToSheet(deviceData);
             
-            // Crear imagen invisible
-            const img = new Image();
-            img.src = trackingUrl;
-            img.style.display = 'none';
-            img.width = 1;
-            img.height = 1;
-            
-            img.onload = () => {
-                console.log('✅ Analytics enviados exitosamente via pixel');
+            if (success) {
                 localStorage.setItem(this.storageKey, new Date().toISOString());
-                document.body.removeChild(img);
-            };
-            
-            img.onerror = () => {
-                console.log('⚠️ Error en pixel, guardando localmente');
-                this.saveForRetry(data);
-                document.body.removeChild(img);
-            };
-            
-            // Agregar al DOM temporalmente
-            document.body.appendChild(img);
-            
-            // Timeout por seguridad
-            setTimeout(() => {
-                if (img.parentNode) {
-                    document.body.removeChild(img);
-                }
-            }, 5000);
-            
+                console.log('✅ Analytics enviados exitosamente');
+            } else {
+                console.log('⚠️ Analytics guardados localmente para reintentar después');
+            }
         } catch (error) {
-            console.error('❌ Error en pixel tracking:', error);
-            this.saveForRetry(data);
+            console.error('❌ Error en analytics:', error);
         }
     }
 
-    sendViaScriptTag(data) {
-        // Método alternativo usando script tag
-        return new Promise((resolve) => {
-            try {
-                const encodedData = encodeURIComponent(JSON.stringify(data));
-                const scriptUrl = `${this.scriptUrl}?analytics=true&data=${encodedData}&callback=analyticsCallback&r=${Math.random()}`;
-                
-                const script = document.createElement('script');
-                script.src = scriptUrl;
-                
-                // Callback global temporal
-                window.analyticsCallback = (response) => {
-                    console.log('✅ Analytics via script:', response);
-                    localStorage.setItem(this.storageKey, new Date().toISOString());
-                    delete window.analyticsCallback;
-                    if (script.parentNode) {
-                        document.head.removeChild(script);
-                    }
-                    resolve(true);
-                };
-                
-                // Timeout
-                setTimeout(() => {
-                    if (window.analyticsCallback) {
-                        console.log('⚠️ Timeout script, guardando localmente');
-                        this.saveForRetry(data);
-                        delete window.analyticsCallback;
-                        if (script.parentNode) {
-                            document.head.removeChild(script);
+    async sendToSheet(data) {
+    return new Promise((resolve) => {
+        try {
+            const payload = {
+                type: 'device_analytics',
+                data: data
+            };
+
+            console.log('Enviando datos a Sheet...', payload);
+
+            // Usar XMLHttpRequest en lugar de fetch para evitar CORS
+            const xhr = new XMLHttpRequest();
+            xhr.open('POST', this.sheetUrl, true);
+            xhr.setRequestHeader('Content-Type', 'application/json');
+            
+            xhr.onreadystatechange = () => {
+                if (xhr.readyState === 4) {
+                    if (xhr.status === 200) {
+                        try {
+                            const result = JSON.parse(xhr.responseText);
+                            console.log('✅ Respuesta del servidor:', result);
+                            resolve(result.success);
+                        } catch (parseError) {
+                            console.log('✅ Datos enviados (respuesta no JSON)');
+                            resolve(true);
                         }
+                    } else {
+                        console.error('❌ Error HTTP:', xhr.status, xhr.statusText);
+                        this.saveForRetry(data);
                         resolve(false);
                     }
-                }, 3000);
-                
-                document.head.appendChild(script);
-                
-            } catch (error) {
-                console.error('❌ Error en script tag:', error);
+                }
+            };
+            
+            xhr.onerror = () => {
+                console.error('❌ Error de red en XMLHttpRequest');
                 this.saveForRetry(data);
                 resolve(false);
-            }
-        });
-    }
+            };
+            
+            xhr.timeout = 10000; // 10 segundos timeout
+            xhr.ontimeout = () => {
+                console.error('⏰ Timeout en la solicitud');
+                this.saveForRetry(data);
+                resolve(false);
+            };
+            
+            xhr.send(JSON.stringify(payload));
+
+        } catch (error) {
+            console.error('❌ Error en sendToSheet:', error);
+            this.saveForRetry(data);
+            resolve(false);
+        }
+    });
+}
 
     saveForRetry(data) {
-        try {
-            const pending = JSON.parse(localStorage.getItem('pendingAnalytics') || '[]');
-            pending.push({
-                timestamp: new Date().toISOString(),
-                data: data
-            });
-            localStorage.setItem('pendingAnalytics', JSON.stringify(pending));
-            console.log('💾 Datos guardados localmente para reintentar');
-        } catch (error) {
-            console.error('Error guardando localmente:', error);
-        }
-    }
-
-    // Reintentar envíos pendientes
-    retryPending() {
-        if (!this.shouldSendAnalytics()) return;
-        
         const pending = JSON.parse(localStorage.getItem('pendingAnalytics') || '[]');
-        if (pending.length === 0) return;
-        
-        console.log(`🔄 Reintentando ${pending.length} analytics pendientes`);
-        
-        pending.forEach(item => {
-            setTimeout(() => {
-                this.sendViaImagePixel(item.data);
-            }, 1000);
+        pending.push({
+            timestamp: new Date().toISOString(),
+            data: data
         });
-        
-        // Limpiar pendientes después de intentar
-        localStorage.removeItem('pendingAnalytics');
+        localStorage.setItem('pendingAnalytics', JSON.stringify(pending));
     }
 }
 
-// Inicializar analytics
-document.addEventListener('DOMContentLoaded', function() {
-    const analytics = new DeviceAnalytics();
-    
-    // Reintentar pendientes después de 5 segundos
-    setTimeout(() => {
-        analytics.retryPending();
-    }, 5000);
-});
-
-// También intentar enviar cuando la página se cierra
-window.addEventListener('beforeunload', function() {
-    // Opcional: intentar enviar analytics de salida
-});
+// Inicializar
+new DeviceAnalytics();
