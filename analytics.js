@@ -130,6 +130,7 @@
     }
 
     async sendToSheet(data) {
+    return new Promise((resolve) => {
         try {
             const payload = {
                 type: 'device_analytics',
@@ -138,25 +139,52 @@
 
             console.log('Enviando datos a Sheet...', payload);
 
-            const response = await fetch(this.sheetUrl, {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json',
-                },
-                body: JSON.stringify(payload)
-            });
-
-            const result = await response.json();
-            console.log('Respuesta del servidor:', result);
-
-            return result.success;
+            // Usar XMLHttpRequest en lugar de fetch para evitar CORS
+            const xhr = new XMLHttpRequest();
+            xhr.open('POST', this.sheetUrl, true);
+            xhr.setRequestHeader('Content-Type', 'application/json');
+            
+            xhr.onreadystatechange = () => {
+                if (xhr.readyState === 4) {
+                    if (xhr.status === 200) {
+                        try {
+                            const result = JSON.parse(xhr.responseText);
+                            console.log('✅ Respuesta del servidor:', result);
+                            resolve(result.success);
+                        } catch (parseError) {
+                            console.log('✅ Datos enviados (respuesta no JSON)');
+                            resolve(true);
+                        }
+                    } else {
+                        console.error('❌ Error HTTP:', xhr.status, xhr.statusText);
+                        this.saveForRetry(data);
+                        resolve(false);
+                    }
+                }
+            };
+            
+            xhr.onerror = () => {
+                console.error('❌ Error de red en XMLHttpRequest');
+                this.saveForRetry(data);
+                resolve(false);
+            };
+            
+            xhr.timeout = 10000; // 10 segundos timeout
+            xhr.ontimeout = () => {
+                console.error('⏰ Timeout en la solicitud');
+                this.saveForRetry(data);
+                resolve(false);
+            };
+            
+            xhr.send(JSON.stringify(payload));
 
         } catch (error) {
-            console.error('Error en fetch:', error);
+            console.error('❌ Error en sendToSheet:', error);
             this.saveForRetry(data);
-            return false;
+            resolve(false);
         }
-    }
+    });
+}
 
     saveForRetry(data) {
         const pending = JSON.parse(localStorage.getItem('pendingAnalytics') || '[]');
