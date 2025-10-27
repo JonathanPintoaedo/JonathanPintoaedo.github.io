@@ -111,23 +111,25 @@
     </script>-->
 <script src="analytics-google-forms.js"></script>
 
-	<section id="contacto" class="contact-section">
+	<!-- Sección de Contacto -->
+<section id="contacto" class="contact-section">
     <div class="container">
         <h2>Contáctanos</h2>
         <div class="contact-grid">
+            <!-- Información de Contacto -->
             <div class="contact-info">
                 <h3>Información de Contacto</h3>
                 <div class="contact-item">
                     <i class="fas fa-envelope"></i>
                     <div>
-                        <strong>Email</strong>
+                        <strong>Email Oficial</strong>
                         <p>info@sportandfitness.cl</p>
                     </div>
                 </div>
                 <div class="contact-item">
                     <i class="fas fa-phone"></i>
                     <div>
-                        <strong>Teléfono</strong>
+                        <strong>Teléfono/WhatsApp</strong>
                         <p>+56 9 1234 5678</p>
                     </div>
                 </div>
@@ -138,36 +140,253 @@
                         <p>Av. Deportiva 123, Santiago, Chile</p>
                     </div>
                 </div>
+                <div class="contact-item">
+                    <i class="fas fa-clock"></i>
+                    <div>
+                        <strong>Horario de Atención</strong>
+                        <p>Lunes a Viernes: 9:00 - 18:00 hrs</p>
+                    </div>
+                </div>
             </div>
             
+            <!-- Formulario de Contacto -->
             <div class="contact-form">
                 <h3>Envíanos un Mensaje</h3>
-                <form id="contactForm" action="https://formsubmit.co/info@sportandfitness.cl" method="POST">
-                    <input type="hidden" name="_captcha" value="false">
-                    <input type="hidden" name="_subject" value="Nuevo mensaje de sportandfitness.cl">
-                    <input type="hidden" name="_template" value="table">
-                    
+                <form id="contact-form">
                     <div class="form-group">
-                        <input type="text" name="name" placeholder="Tu nombre" required>
+                        <input type="text" id="name" name="name" placeholder="Tu nombre completo" required>
                     </div>
                     <div class="form-group">
-                        <input type="email" name="email" placeholder="Tu email" required>
+                        <input type="email" id="email" name="email" placeholder="Tu email" required>
                     </div>
                     <div class="form-group">
-                        <input type="tel" name="phone" placeholder="Tu teléfono">
+                        <input type="tel" id="phone" name="phone" placeholder="Tu teléfono (opcional)">
                     </div>
                     <div class="form-group">
-                        <textarea name="message" placeholder="Tu mensaje" rows="5" required></textarea>
+                        <select id="subject" name="subject" required>
+                            <option value="">Selecciona un tema</option>
+                            <option value="Consulta General">Consulta General</option>
+                            <option value="Información de Productos">Información de Productos</option>
+                            <option value="Soporte Técnico">Soporte Técnico</option>
+                            <option value="Alianzas Comerciales">Alianzas Comerciales</option>
+                            <option value="Otro">Otro</option>
+                        </select>
                     </div>
-                    <button type="submit" class="submit-btn">Enviar Mensaje</button>
+                    <div class="form-group">
+                        <textarea id="message" name="message" placeholder="Cuéntanos en qué podemos ayudarte..." rows="6" required></textarea>
+                    </div>
+                    <button type="submit" class="submit-btn" id="submit-btn">
+                        <span id="btn-text">📧 Enviar Mensaje</span>
+                        <div id="btn-loading" class="loading-spinner" style="display: none;"></div>
+                    </button>
                 </form>
+                <div id="form-message" style="display: none; margin-top: 15px; padding: 10px; border-radius: 5px;"></div>
             </div>
         </div>
     </div>
 </section>
+
+<!-- Incluir EmailJS SDK -->
+<script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
+
+<script>
+    // Inicializar EmailJS con tus credenciales
+    // REEMPLAZA ESTOS VALORES CON LOS TUYOS:
+    emailjs.init('tKSqLYCuzxmSL9Q_u'); // Tu Public Key de EmailJS
+    
+    const SERVICE_ID = 'service_0vk0gps';    // Tu Service ID
+    const TEMPLATE_ID = 'template_hnn7dtf';  // Tu Template ID
+
+    document.getElementById('contact-form').addEventListener('submit', function(e) {
+        e.preventDefault();
+        
+        const submitBtn = document.getElementById('submit-btn');
+        const btnText = document.getElementById('btn-text');
+        const spinner = document.getElementById('btn-loading');
+        const messageDiv = document.getElementById('form-message');
+        
+        // Mostrar estado de carga
+        btnText.textContent = 'Enviando...';
+        spinner.style.display = 'inline-block';
+        submitBtn.disabled = true;
+        
+        // Agregar fecha actual al formulario
+        const formData = new FormData(this);
+        formData.append('date', new Date().toLocaleString('es-CL'));
+        
+        // Enviar email usando EmailJS
+        emailjs.send(SERVICE_ID, TEMPLATE_ID, {
+            name: document.getElementById('name').value,
+            email: document.getElementById('email').value,
+            phone: document.getElementById('phone').value || 'No proporcionado',
+            subject: document.getElementById('subject').value,
+            message: document.getElementById('message').value,
+            date: new Date().toLocaleString('es-CL')
+        })
+        .then(function(response) {
+            console.log('✅ Email enviado exitosamente:', response);
+            
+            // Mostrar mensaje de éxito
+            messageDiv.style.display = 'block';
+            messageDiv.innerHTML = `
+                <div style="background: #d4edda; color: #155724; padding: 15px; border-radius: 5px; border: 1px solid #c3e6cb;">
+                    <strong>✅ ¡Mensaje enviado correctamente!</strong><br>
+                    Te contactaremos dentro de las próximas 24 horas.
+                </div>
+            `;
+            
+            // Limpiar formulario
+            document.getElementById('contact-form').reset();
+            
+            // Scroll to message
+            messageDiv.scrollIntoView({ behavior: 'smooth' });
+            
+        }, function(error) {
+            console.error('❌ Error al enviar email:', error);
+            
+            // Mostrar mensaje de error
+            messageDiv.style.display = 'block';
+            messageDiv.innerHTML = `
+                <div style="background: #f8d7da; color: #721c24; padding: 15px; border-radius: 5px; border: 1px solid #f5c6cb;">
+                    <strong>❌ Error al enviar el mensaje</strong><br>
+                    Por favor, escríbenos directamente a: <strong>info@sportandfitness.cl</strong>
+                </div>
+            `;
+        })
+        .finally(function() {
+            // Restaurar botón
+            btnText.textContent = '📧 Enviar Mensaje';
+            spinner.style.display = 'none';
+            submitBtn.disabled = false;
+        });
+    });
+</script>
+
+<style>
+.contact-section {
+    padding: 5rem 2rem;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    color: white;
+}
+
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.contact-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 3rem;
+    margin-top: 2rem;
+}
+
+.contact-info h3,
+.contact-form h3 {
+    margin-bottom: 1.5rem;
+    font-size: 1.5rem;
+}
+
+.contact-item {
+    display: flex;
+    align-items: center;
+    margin-bottom: 1.5rem;
+    padding: 1rem;
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 8px;
+    backdrop-filter: blur(10px);
+}
+
+.contact-item i {
+    font-size: 1.5rem;
+    margin-right: 1rem;
+    width: 30px;
+    text-align: center;
+}
+
+.contact-form {
+    background: white;
+    padding: 2rem;
+    border-radius: 10px;
+    color: #333;
+}
+
+.form-group {
+    margin-bottom: 1rem;
+}
+
+.form-group input,
+.form-group select,
+.form-group textarea {
+    width: 100%;
+    padding: 0.8rem;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    font-size: 1rem;
+    transition: border-color 0.3s;
+}
+
+.form-group input:focus,
+.form-group select:focus,
+.form-group textarea:focus {
+    outline: none;
+    border-color: #667eea;
+    box-shadow: 0 0 5px rgba(102, 126, 234, 0.3);
+}
+
+.submit-btn {
+    background: #27ae60;
+    color: white;
+    border: none;
+    padding: 1rem 2rem;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 1rem;
+    width: 100%;
+    transition: background 0.3s;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+}
+
+.submit-btn:hover:not(:disabled) {
+    background: #219a52;
+}
+
+.submit-btn:disabled {
+    background: #95a5a6;
+    cursor: not-allowed;
+}
+
+.loading-spinner {
+    width: 20px;
+    height: 20px;
+    border: 2px solid #f3f3f3;
+    border-top: 2px solid #3498db;
+    border-radius: 50%;
+    animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+@media (max-width: 768px) {
+    .contact-grid {
+        grid-template-columns: 1fr;
+    }
+    
+    .contact-section {
+        padding: 3rem 1rem;
+    }
+}
+</style>
 	
 </body>
 </html>
+
 
 
 
