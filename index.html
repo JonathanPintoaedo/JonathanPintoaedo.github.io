@@ -111,17 +111,61 @@
     </script>-->
 <script src="analytics-google-forms.js"></script>
 
-	<div style="text-align: center; padding: 40px;">
-    <h3>📧 Contáctanos Directamente</h3>
-    <p>Escríbenos a:</p>
-    <a href="contacto@sportandfitness.cl?subject=Consulta%20SportAndFitness&body=Hola,%20me%20interesa%20sus%20productos..."
-       style="font-size: 1.2em; color: #3498db; text-decoration: none;">
-       contacto@sportandfitness.cl
-    </a>
-</div>
+	<form id="contactForm">
+    <div class="form-group">
+        <input type="text" id="name" placeholder="Tu nombre" required>
+    </div>
+    <div class="form-group">
+        <input type="email" id="email" placeholder="Tu email" required>
+    </div>
+    <div class="form-group">
+        <textarea id="message" placeholder="Mensaje" required></textarea>
+    </div>
+    <button type="submit">Enviar</button>
+</form>
+
+<script>
+document.getElementById('contactForm').addEventListener('submit', function(e) {
+    e.preventDefault();
+    
+    // Tu email de FormSubmit
+    const formSubmitEmail = 'jotaptinto@gmail.com';
+    
+    const formData = {
+        name: document.getElementById('name').value,
+        email: document.getElementById('email').value,
+        message: document.getElementById('message').value,
+        _subject: 'Mensaje desde SportAndFitness.cl',
+        _captcha: 'false'
+    };
+    
+    fetch('https://formsubmit.co/ajax/' + formSubmitEmail, {
+        method: 'POST',
+        headers: { 
+            'Content-Type': 'application/json',
+            'Accept': 'application/json'
+        },
+        body: JSON.stringify(formData)
+    })
+    .then(response => response.json())
+    .then(data => {
+        if (data.success) {
+            alert('✅ Mensaje enviado correctamente');
+            document.getElementById('contactForm').reset();
+        } else {
+            alert('❌ Error al enviar');
+        }
+    })
+    .catch(error => {
+        console.error('Error:', error);
+        alert('❌ Error de conexión');
+    });
+});
+</script>
          
 </body>
 </html>
+
 
 
 
