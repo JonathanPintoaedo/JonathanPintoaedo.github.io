@@ -112,54 +112,78 @@
 <script src="analytics-google-forms.js"></script>
 
 	<!-- INCLUIR EmailJS -->
-<script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
 
+    <section style="padding: 50px 20px; background: #f8f9fa;">
+    <div style="max-width: 600px; margin: 0 auto;">
+        <h2 style="text-align: center; color: #2c3e50;">Contáctanos</h2>
+        
+        <form id="contact-form" style="background: white; padding: 30px; border-radius: 10px; box-shadow: 0 5px 15px rgba(0,0,0,0.1);">
+            <div style="margin-bottom: 15px;">
+                <input type="text" name="name" placeholder="Tu nombre" required 
+                       style="width: 100%; padding: 12px; border: 1px solid #ddd; border-radius: 5px;">
+            </div>
+            
+            <div style="margin-bottom: 15px;">
+                <input type="email" name="email" placeholder="Tu email" required
+                       style="width: 100%; padding: 12px; border: 1px solid #ddd; border-radius: 5px;">
+            </div>
+            
+            <div style="margin-bottom: 15px;">
+                <input type="tel" name="phone" placeholder="Tu teléfono (opcional)"
+                       style="width: 100%; padding: 12px; border: 1px solid #ddd; border-radius: 5px;">
+            </div>
+            
+            <div style="margin-bottom: 15px;">
+                <textarea name="message" placeholder="Tu mensaje..." rows="5" required
+                          style="width: 100%; padding: 12px; border: 1px solid #ddd; border-radius: 5px;"></textarea>
+            </div>
+            
+            <button type="submit" id="submit-btn"
+                    style="background: #27ae60; color: white; border: none; padding: 15px 30px; border-radius: 5px; cursor: pointer; width: 100%; font-size: 16px;">
+                📧 Enviar Mensaje
+            </button>
+        </form>
+    </div>
+</section>
+
+<!-- INCLUIR EmailJS -->
+<script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
 <script>
-    // INICIALIZAR EmailJS con TUS credenciales
-    emailjs.init('7FJEqGW5kuUpq-edF'); // Tu PUBLIC KEY
-    
+    // REEMPLAZA CON TUS CÓDIGOS:   
+
+	emailjs.init('7FJEqGW5kuUpq-edF'); // Tu PUBLIC KEY    
     const SERVICE_ID = 'service_h47mj9d';    // Tu SERVICE ID
     const TEMPLATE_ID = 'template_551nmwl';  // Tu TEMPLATE ID
 
-    // CONFIGURAR el formulario
     document.getElementById('contact-form').addEventListener('submit', function(e) {
         e.preventDefault();
-        
-        // Mostrar "Enviando..."
         const btn = document.getElementById('submit-btn');
         btn.innerHTML = '⏳ Enviando...';
         btn.disabled = true;
         
-        // ENVIAR el email
         emailjs.sendForm(SERVICE_ID, TEMPLATE_ID, this)
             .then(function() {
-                // ✅ ÉXITO
-                btn.innerHTML = '✅ Enviado!';
-                alert('¡Mensaje enviado! Te contactaremos pronto.');
+                btn.innerHTML = '✅ ¡Enviado!';
+                alert('Mensaje enviado correctamente!');
                 document.getElementById('contact-form').reset();
-                
-                // Restaurar botón después de 2 segundos
                 setTimeout(() => {
                     btn.innerHTML = '📧 Enviar Mensaje';
                     btn.disabled = false;
-                }, 2000);
-                
+                }, 3000);
             }, function(error) {
-                // ❌ ERROR
                 btn.innerHTML = '❌ Error';
-                alert('Error al enviar. Por favor, escribe a: info@sportandfitness.cl');
-                
-                // Restaurar botón después de 2 segundos
+                alert('Error: Escribe a info@sportandfitness.cl');
                 setTimeout(() => {
                     btn.innerHTML = '📧 Enviar Mensaje';
                     btn.disabled = false;
-                }, 2000);
+                }, 3000);
             });
     });
 </script>
          
 </body>
 </html>
+
 
 
 
