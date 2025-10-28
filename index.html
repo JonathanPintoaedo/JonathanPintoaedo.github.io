@@ -111,55 +111,56 @@
     </script>-->
 <script src="analytics-google-forms.js"></script>
 
-	<section id="contacto">
-    <h2>Contáctanos</h2>
-    
-    <!-- FORMULARIO FUNCIONAL -->
-    <form action="https://formsubmit.co/jotaptinto@gmail.com" method="POST" 
-          style="max-width: 500px; margin: 0 auto; padding: 20px; background: white; border-radius: 10px; box-shadow: 0 2px 10px rgba(0,0,0,0.1);">
-        
-        <!-- Configuración FormSubmit -->
-        <input type="hidden" name="_captcha" value="false">
-        <input type="hidden" name="_subject" value="Nuevo contacto - SportAndFitness">
-        <input type="hidden" name="_template" value="table">
-        <input type="hidden" name="_next" value="https://sportandfitness.cl/#contacto">
-        
-        <!-- Campos -->
-        <div style="margin-bottom: 15px;">
-            <input type="text" name="name" placeholder="Tu nombre" required 
-                   style="width: 100%; padding: 12px; border: 1px solid #ddd; border-radius: 5px; font-size: 16px;">
-        </div>
-        
-        <div style="margin-bottom: 15px;">
-            <input type="email" name="email" placeholder="Tu email" required 
-                   style="width: 100%; padding: 12px; border: 1px solid #ddd; border-radius: 5px; font-size: 16px;">
-        </div>
-        
-        <div style="margin-bottom: 15px;">
-            <textarea name="message" placeholder="Tu mensaje..." rows="5" required 
-                      style="width: 100%; padding: 12px; border: 1px solid #ddd; border-radius: 5px; font-size: 16px;"></textarea>
-        </div>
-        
-        <button type="submit" 
-                style="width: 100%; padding: 15px; background: #27ae60; color: white; border: none; border-radius: 5px; font-size: 16px; cursor: pointer;">
-            📧 Enviar Mensaje
-        </button>
-    </form>
-    
-    <!-- Mensaje de estado -->
-    <div id="form-status" style="margin-top: 20px; text-align: center;"></div>
-</section>
+	<!-- INCLUIR EmailJS -->
+<script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
 
 <script>
-// Verificar envío
-document.querySelector('form').addEventListener('submit', function() {
-    document.getElementById('form-status').innerHTML = 
-        '<p style="color: #27ae60;">⏳ Enviando mensaje...</p>';
-});
+    // INICIALIZAR EmailJS con TUS credenciales
+    emailjs.init('7FJEqGW5kuUpq-edF'); // Tu PUBLIC KEY
+    
+    const SERVICE_ID = 'service_h47mj9d';    // Tu SERVICE ID
+    const TEMPLATE_ID = 'template_551nmwl';  // Tu TEMPLATE ID
+
+    // CONFIGURAR el formulario
+    document.getElementById('contact-form').addEventListener('submit', function(e) {
+        e.preventDefault();
+        
+        // Mostrar "Enviando..."
+        const btn = document.getElementById('submit-btn');
+        btn.innerHTML = '⏳ Enviando...';
+        btn.disabled = true;
+        
+        // ENVIAR el email
+        emailjs.sendForm(SERVICE_ID, TEMPLATE_ID, this)
+            .then(function() {
+                // ✅ ÉXITO
+                btn.innerHTML = '✅ Enviado!';
+                alert('¡Mensaje enviado! Te contactaremos pronto.');
+                document.getElementById('contact-form').reset();
+                
+                // Restaurar botón después de 2 segundos
+                setTimeout(() => {
+                    btn.innerHTML = '📧 Enviar Mensaje';
+                    btn.disabled = false;
+                }, 2000);
+                
+            }, function(error) {
+                // ❌ ERROR
+                btn.innerHTML = '❌ Error';
+                alert('Error al enviar. Por favor, escribe a: info@sportandfitness.cl');
+                
+                // Restaurar botón después de 2 segundos
+                setTimeout(() => {
+                    btn.innerHTML = '📧 Enviar Mensaje';
+                    btn.disabled = false;
+                }, 2000);
+            });
+    });
 </script>
          
 </body>
 </html>
+
 
 
 
