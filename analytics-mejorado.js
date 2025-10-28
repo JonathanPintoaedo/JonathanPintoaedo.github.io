@@ -5,12 +5,12 @@ class DeviceAnalytics {
         this.storageKey = 'lastAnalyticsSend';
         this.init();
     }
-        // ¡Este método debe estar definido!
+    // ¡Este método debe estar definido!
     init() {
         // Código de inicialización aquí
         console.log('Analytics inicializado');
+    }
 
-    
     async collectDeviceData() {
         try {
             const data = {
