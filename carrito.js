@@ -1,21 +1,24 @@
 class Carrito {
     constructor() {
         this.items = JSON.parse(localStorage.getItem('carrito')) || [];
-        this.actualizarCarrito();
+        // SOLUCIÓN: Esperar a que el DOM esté listo
+        setTimeout(() => {
+            this.actualizarCarrito();
+        }, 100);
     }
 
     agregarProducto(producto) {
         const itemExistente = this.items.find(item => item.id === producto.id);
-        
+
         if (itemExistente) {
-            itemExistente.cantidad++;
+            itemExistente.cantidad += (producto.cantidad || 1);
         } else {
             this.items.push({
                 ...producto,
-                cantidad: 1
+                cantidad: producto.cantidad || 1
             });
         }
-        
+
         this.guardarCarrito();
         this.actualizarCarrito();
         this.mostrarNotificacion(`${producto.nombre} agregado al carrito`);
@@ -54,21 +57,35 @@ class Carrito {
     }
 
     actualizarCarrito() {
-        // Actualizar contador del carrito
-        document.getElementById('cart-count').textContent = this.obtenerCantidadTotal();
-        
-        // Actualizar items del carrito en el modal
-        this.mostrarItemsCarrito();
-        
-        // Actualizar total
-        document.getElementById('cart-total').textContent = this.obtenerTotal().toLocaleString();
+        // SOLUCIÓN: Verificar si los elementos existen antes de actualizar
+        const cartCount = document.getElementById('cart-count');
+        const cartItems = document.getElementById('cart-items');
+        const cartTotal = document.getElementById('cart-total');
+
+        if (cartCount) {
+            cartCount.textContent = this.obtenerCantidadTotal();
+        }
+
+        if (cartItems) {
+            this.mostrarItemsCarrito();
+        }
+
+        if (cartTotal) {
+            cartTotal.textContent = this.obtenerTotal().toLocaleString();
+        }
     }
 
     mostrarItemsCarrito() {
         const cartItems = document.getElementById('cart-items');
-        
+
+        // SOLUCIÓN: Verificar si el elemento existe
+        if (!cartItems) {
+            console.log('Elemento cart-items no encontrado');
+            return;
+        }
+
         if (this.items.length === 0) {
-            cartItems.innerHTML = '<p>Tu carrito está vacío</p>';
+            cartItems.innerHTML = '<p class="carrito-vacio">Tu carrito está vacío</p>';
             return;
         }
 
@@ -77,19 +94,27 @@ class Carrito {
                 <div class="cart-item-info">
                     <h4>${item.nombre}</h4>
                     <p>$${item.precio.toLocaleString()} c/u</p>
+                    <small>${item.marca}</small>
                 </div>
                 <div class="cart-item-controls">
                     <button class="quantity-btn" onclick="carrito.actualizarCantidad(${item.id}, ${item.cantidad - 1})">-</button>
-                    <span>${item.cantidad}</span>
+                    <span class="cantidad">${item.cantidad}</span>
                     <button class="quantity-btn" onclick="carrito.actualizarCantidad(${item.id}, ${item.cantidad + 1})">+</button>
-                    <button class="remove-btn" onclick="carrito.eliminarProducto(${item.id})">Eliminar</button>
+                    <button class="remove-btn" onclick="carrito.eliminarProducto(${item.id})">
+                        <i class="fas fa-trash"></i>
+                    </button>
+                </div>
+                <div class="cart-item-subtotal">
+                    $${(item.precio * item.cantidad).toLocaleString()}
                 </div>
             </div>
         `).join('');
     }
 
     mostrarNotificacion(mensaje) {
-        // Crear notificación temporal
+        // SOLUCIÓN: Verificar si el DOM está listo
+        if (typeof document === 'undefined') return;
+
         const notificacion = document.createElement('div');
         notificacion.style.cssText = `
             position: fixed;
@@ -97,17 +122,20 @@ class Carrito {
             right: 20px;
             background: #27ae60;
             color: white;
-            padding: 1rem 2rem;
-            border-radius: 5px;
-            z-index: 3000;
-            animation: slideIn 0.3s ease;
+            padding: 15px 25px;
+            border-radius: 10px;
+            z-index: 10000;
+            animation: slideInRight 0.3s ease;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
         `;
         notificacion.textContent = mensaje;
-        
+
         document.body.appendChild(notificacion);
-        
+
         setTimeout(() => {
-            notificacion.remove();
+            if (notificacion.parentNode) {
+                notificacion.parentNode.removeChild(notificacion);
+            }
         }, 3000);
     }
 
@@ -118,16 +146,29 @@ class Carrito {
         }
 
         const total = this.obtenerTotal();
-        const mensaje = `¡Gracias por tu compra!\n\nTotal: $${total.toLocaleString()}\n\nPara completar tu pedido, contáctanos al +56 9 1234 5678 o escribe a info@sportandfitness.cl`;
-        
+        const productosLista = this.items.map(item =>
+            `• ${item.nombre} x${item.cantidad} - $${(item.precio * item.cantidad).toLocaleString()}`
+        ).join('\n');
+
+        const mensaje = `¡Gracias por tu compra en Sport & Fitness!\n\n📦 **Resumen de tu pedido:**\n${productosLista}\n\n💰 **Total: $${total.toLocaleString()}**\n\n📞 **Para completar tu pedido:**\n• WhatsApp: +56 9 1234 5678\n• Email: info@sportandfitness.cl\n\n¡Te contactaremos dentro de las próximas 24 horas!`;
+
         alert(mensaje);
-        
-        // Opcional: limpiar carrito después de compra
-        // this.items = [];
-        // this.guardarCarrito();
-        // this.actualizarCarrito();
     }
 }
 
-// Instanciar carrito global
-const carrito = new Carrito();
+// SOLUCIÓN: Hacer carrito global de forma segura
+let carrito;
+
+// Inicializar carrito cuando el DOM esté listo
+document.addEventListener('DOMContentLoaded', function () {
+    carrito = new Carrito();
+});
+
+// SOLUCIÓN: Para páginas que no tienen DOMContentLoaded (como módulos)
+if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', () => {
+        carrito = new Carrito();
+    });
+} else {
+    carrito = new Carrito();
+}

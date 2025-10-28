@@ -6,7 +6,8 @@ const productos = [
         precio: 29990,
         categoria: "proteina",
         imagen: "🥛",
-        descripcion: "Proteína de suero de leche de alta calidad"
+        descripcion: "Proteína de suero de leche de alta calidad",
+        SKU: "COLD80C"
     },
     {
         id: 2,
@@ -14,7 +15,8 @@ const productos = [
         precio: 15990,
         categoria: "proteina",
         imagen: "💊",
-        descripcion: "Creatina pura para aumentar fuerza"
+        descripcion: "Creatina pura para aumentar fuerza",
+        SKU: "COLD80C"
     },
     {
         id: 3,
@@ -22,7 +24,8 @@ const productos = [
         precio: 49990,
         categoria: "equipo",
         imagen: "🏋️",
-        descripcion: "Set de mancuernas ajustables 5-25kg"
+        descripcion: "Set de mancuernas ajustables 5-25kg",
+        SKU: "COLD80C"
     },
     {
         id: 4,
@@ -30,7 +33,8 @@ const productos = [
         precio: 12990,
         categoria: "equipo",
         imagen: "🧘",
-        descripcion: "Colchoneta antideslizante premium"
+        descripcion: "Colchoneta antideslizante premium",
+        SKU: "COLD80C"
     },
     {
         id: 5,
@@ -38,7 +42,8 @@ const productos = [
         precio: 19990,
         categoria: "ropa",
         imagen: "👕",
-        descripcion: "Camiseta técnica para entrenamiento"
+        descripcion: "Camiseta técnica para entrenamiento",
+        SKU: "COLD80C"
     },
     {
         id: 6,
@@ -46,7 +51,8 @@ const productos = [
         precio: 14990,
         categoria: "ropa",
         imagen: "🩳",
-        descripcion: "Shorts ligeros y transpirables"
+        descripcion: "Shorts ligeros y transpirables",
+        SKU: "COLD80C"
     },
     {
         id: 7,
@@ -54,7 +60,8 @@ const productos = [
         precio: 22990,
         categoria: "proteina",
         imagen: "💊",
-        descripcion: "Aminoácidos de cadena ramificada"
+        descripcion: "Aminoácidos de cadena ramificada",
+        SKU: "COLD80C"
     },
     {
         id: 8,
@@ -62,6 +69,7 @@ const productos = [
         precio: 199990,
         categoria: "equipo",
         imagen: "🏃",
-        descripcion: "Cinta de correr para casa plegable"
+        descripcion: "Cinta de correr para casa plegable",
+        SKU: "COLD80C"
     }
 ];

@@ -1,0 +1,168 @@
+﻿<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Detalle Producto - Sport & Fitness</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <nav>
+            <div class="logo">
+                <a href="index.html" style="color: white; text-decoration: none;">
+                    <h1>🏋️ Sport & Fitness</h1>
+                </a>
+            </div>
+            <div class="nav-icons">
+                <a href="index.html" class="nav-icon">
+                    <i class="fas fa-home"></i> Inicio
+                </a>
+                <a href="#cart" class="cart-icon">
+                    <i class="fas fa-shopping-cart"></i>
+                    <span id="cart-count">0</span>
+                </a>
+            </div>
+        </nav>
+    </header>
+
+    <!-- Contenido del Producto -->
+    <main class="producto-detalle-container">
+        <div class="container">
+            <!-- Ruta de navegación -->
+            <nav class="breadcrumb">
+                <a href="index.html">Inicio</a>
+                <span>/</span>
+                <a href="#" id="breadcrumb-category">Categoría</a>
+                <span>/</span>
+                <span id="breadcrumb-product">Producto</span>
+            </nav>
+
+            <div class="producto-detalle-grid">
+                <!-- Galería de Imágenes -->
+                <div class="producto-galeria">
+                    <div class="imagen-principal">
+                        <div class="producto-imagen-grande" id="imagen-principal">
+                            <!-- Imagen se carga por JS -->
+                        </div>
+                    </div>
+                    <div class="producto-badges">
+                        <div class="descuento-badge" id="badge-descuento" style="display: none;"></div>
+                        <div class="destacado-badge" id="badge-destacado" style="display: none;">⭐ Destacado</div>
+                    </div>
+                </div>
+
+                <!-- Información del Producto -->
+                <div class="producto-info">
+                    <div class="marca-badge" id="producto-marca"></div>
+                    <h1 id="producto-nombre"></h1>
+                    <div class="producto-rating">
+                        <div class="estrellas">
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star-half-alt"></i>
+                        </div>
+                        <span class="rating-text">4.5 (128 reviews)</span>
+                    </div>
+
+                    <div class="precio-container-detalle">
+                        <div class="precio-actual-detalle" id="precio-actual"></div>
+                        <div class="precio-original-detalle" id="precio-original"></div>
+                        <div class="ahorro-detalle" id="ahorro-info"></div>
+                    </div>
+
+                    <div class="stock-info-detalle">
+                        <i class="fas fa-box"></i>
+                        <span id="stock-info"></span>
+                    </div>
+
+                    <div class="producto-descripcion-detalle">
+                        <h3>Descripción</h3>
+                        <p id="descripcion-completa"></p>
+                    </div>
+
+                    <div class="caracteristicas">
+                        <h3>Características</h3>
+                        <ul id="lista-caracteristicas">
+                            <!-- Características se cargan por JS -->
+                        </ul>
+                    </div>
+
+                    <!-- Selector de Cantidad -->
+                    <div class="selector-cantidad">
+                        <label for="cantidad">Cantidad:</label>
+                        <div class="cantidad-controls">
+                            <button type="button" id="decrementar">-</button>
+                            <input type="number" id="cantidad" value="1" min="1" max="10">
+                            <button type="button" id="incrementar">+</button>
+                        </div>
+                    </div>
+
+                    <!-- Botones de Acción -->
+                    <div class="acciones-producto">
+                        <button class="btn-agregar-carrito" id="btn-agregar-detalle">
+                            <i class="fas fa-shopping-cart"></i>
+                            Agregar al Carrito
+                        </button>
+                        <button class="btn-comprar-ahora" id="btn-comprar-ahora">
+                            <i class="fas fa-bolt"></i>
+                            Comprar Ahora
+                        </button>
+                    </div>
+
+                    <!-- Información de Envío -->
+                    <div class="info-envio">
+                        <div class="envio-item">
+                            <i class="fas fa-shipping-fast"></i>
+                            <div>
+                                <strong>Envío Gratis</strong>
+                                <p>En compras sobre $50.000</p>
+                            </div>
+                        </div>
+                        <div class="envio-item">
+                            <i class="fas fa-undo"></i>
+                            <div>
+                                <strong>30 días de devolución</strong>
+                                <p>Política de devolución flexible</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Productos Relacionados -->
+            <section class="productos-relacionados">
+                <h2>Productos Relacionados</h2>
+                <div id="grid-relacionados" class="products-grid">
+                    <!-- Productos relacionados se cargan por JS -->
+                </div>
+            </section>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-content">
+            <div class="contact-info">
+                <h3>Sport & Fitness</h3>
+                <p>Tu tienda de confianza para equipamiento deportivo</p>
+            </div>
+            <div class="footer-links">
+                <a href="index.html">Inicio</a>
+                <a href="#productos">Productos</a>
+                <a href="#contacto">Contacto</a>
+            </div>
+        </div>
+        <p class="copyright">&copy; 2025 Sport & Fitness. Todos los derechos reservados.</p>
+    </footer>
+
+    <!-- Scripts - ORDEN CORREGIDO -->
+    <script src="productos-reales.js"></script>
+    <script src="carrito.js"></script>
+    <script src="producto-detalle.js"></script>
+</body>
+</html>
