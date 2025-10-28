@@ -5,6 +5,27 @@ class DeviceAnalytics {
         this.storageKey = 'lastAnalyticsSend';
         this.init();
     }
+    init() {
+    // Verificar si ya se enviaron analytics hoy
+    if (!this.shouldSendAnalytics()) {
+        console.log('Analytics ya enviados hoy');
+        return;
+    }
+
+    // Recolectar y enviar datos
+    this.collectAndSend();
+}
+
+shouldSendAnalytics() {
+    const lastSend = localStorage.getItem(this.storageKey);
+    if (!lastSend) return true;
+
+    const lastSendDate = new Date(lastSend);
+    const today = new Date();
+    
+    // Comparar si es el mismo día
+    return lastSendDate.toDateString() !== today.toDateString();
+}
     async collectDeviceData() {
         try {
             const data = {
