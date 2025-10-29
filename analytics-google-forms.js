@@ -238,3 +238,4 @@ document.addEventListener('DOMContentLoaded', function() {
         analytics.retryPending();
     }, 5000); // Reintentar después de 5 segundos
 });
+
