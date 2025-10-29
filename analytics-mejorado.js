@@ -3,13 +3,36 @@ class DeviceAnalytics {
         this.formUrl = 'https://docs.google.com/forms/d/e/1FAIpQLSeF7msBbdMN18btkQZQ5coSa7losNxFl7HC9J4L-t1EcLb-HA/formResponse'
         
         this.storageKey = 'lastAnalyticsSend';
-        this.init();
+
+        this.init(); // Ahora sí funcionará
     }
-    // ¡Este método debe estar definido!
-    init() {
-        // Código de inicialización aquí
-        console.log('Analytics inicializado');
-    }
+        // ✅ AGREGA ESTE MÉTODO QUE FALTABA
+        init() {
+            console.log('🔄 Inicializando DeviceAnalytics...');
+
+            // Verificar si ya se enviaron analytics hoy
+            const lastSend = localStorage.getItem(this.storageKey);
+            const today = new Date().toDateString();
+            const lastSendDate = lastSend ? new Date(lastSend).toDateString() : null;
+
+            if (!lastSendDate || lastSendDate !== today) {
+                console.log('📊 Enviando analytics del día...');
+                this.collectAndSend();
+            } else {
+                console.log('✅ Analytics ya enviados hoy');
+            }
+
+            // También podrías inicializar event listeners aquí si los necesitas
+            this.setupEventListeners();
+        }
+
+        // Método opcional para event listeners
+        setupEventListeners() {
+            // Ejemplo: enviar analytics cuando el usuario abandone la página
+            window.addEventListener('beforeunload', () => {
+                this.collectAndSend();
+            });
+        }   
 
     async collectDeviceData() {
         try {
@@ -392,7 +415,7 @@ class DeviceAnalytics {
     // El resto de los métodos (getRegionFromTimezone, getCurrency, etc.)
     // los puedes implementar según necesites
 
-    async collectAndSend() {
+    async generateSessionId() {
         try {
             const deviceData = await this.collectDeviceData();
             console.log('📊 Datos del dispositivo recolectados:', deviceData);
@@ -408,7 +431,21 @@ class DeviceAnalytics {
             console.error('❌ Error en analytics:', error);
         }
     }
+    async collectAndSend() {
+        try {
+            const deviceData = await this.collectDeviceData(); // ⚠️ Faltaba await aquí
+            console.log('Datos del dispositivo:', deviceData);
 
+            const success = await this.sendToGoogleForm(deviceData);
+
+            if (success) {
+                localStorage.setItem(this.storageKey, new Date().toISOString());
+                console.log('Analytics enviados a Google Forms');
+            }
+        } catch (error) {
+            console.error('Error en analytics:', error);
+        }
+    }
     async sendToGoogleForm(data) {
         try {
             const formData = new FormData();
