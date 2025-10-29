@@ -1,5 +1,5 @@
  //this.formUrl = 'https://docs.google.com/forms/d/e/1FAIpQLSdnpv04gREa735vPJ-vxcQgieKUPJBiCIj2H13lsKmXEE3fEg/formResponse';
-        class DeviceAnalytics2 {
+        class DeviceAnalytics {
     constructor() {
         // URL de tu Google Form - ¡REEMPLAZA CON TU ID REAL!
         this.formUrl = 'https://docs.google.com/forms/d/e/1FAIpQLSdnpv04gREa735vPJ-vxcQgieKUPJBiCIj2H13lsKmXEE3fEg/formResponse';
@@ -238,4 +238,3 @@ document.addEventListener('DOMContentLoaded', function() {
         analytics.retryPending();
     }, 5000); // Reintentar después de 5 segundos
 });
-
