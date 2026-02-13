@@ -1,6 +1,14 @@
 {
-  "updated_at": "2026-02-13T00:00:00Z",
+  "updated_at": "2026-02-13T19:24:15.498268+00:00",
   "items": [
+    {
+      "title": "Producto demo",
+      "price": 29990,
+      "url": "https://ejemplo.cl/producto",
+      "image": "https://sportandfitness.cl/assets/placeholder.jpg",
+      "source": "ejemplo.cl",
+      "date": "2026-02-13T19:24:15.498268+00:00"
+    },
     {
       "title": "Disco SSD 1TB Kingston NV3",
       "price": 29990,
