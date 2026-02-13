@@ -1,0 +1,380 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sport & Fitness - Tienda Online</title>
+    <link rel="stylesheet" href="styles.css">
+    <!-- Iconos -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+
+	<!--<script src="analytics.js"></script> -->
+	
+	<!-- Google Analytics -->
+   <script async src="https://www.googletagmanager.com/gtag/js?id=G-8RV6F4PX9X"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-8RV6F4PX9X');
+</script>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <nav>
+            <div class="logo">
+                <h1>🏋️ Sport & Fitness</h1>
+            </div>
+            <div class="nav-icons">
+                <a href="#cart" class="cart-icon">
+                    <i class="fas fa-shopping-cart"></i>
+                    <span id="cart-count">0</span>
+                </a>
+            </div>
+        </nav>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="hero-content">
+            <h2>Equipamiento Deportivo Premium</h2>
+            <p>Todo lo que necesitas para tu entrenamiento</p>
+        </div>
+    </section>
+
+    <!-- Catálogo de Productos -->
+    <!--<section class="products-section">
+        <h2>Nuestros Productos</h2>
+        <div class="filters">
+            <button class="filter-btn active" data-filter="all">Todos</button>
+            <button class="filter-btn" data-filter="proteina">Proteínas</button>
+            <button class="filter-btn" data-filter="equipo">Equipamiento</button>
+            <button class="filter-btn" data-filter="ropa">Ropa</button>
+        </div>
+        <div id="products-grid" class="products-grid">-->
+    <!-- Los productos se cargan dinámicamente con JavaScript -->
+    <!--</div>
+    </section>-->
+    <!-- Sección de Productos Mejorada -->
+    <section class="products-section">
+        <div class="container">
+            <!-- Banner destacados -->
+            <div class="featured-banner">
+                <h2>🏆 Productos Destacados</h2>
+                <p>Los favoritos de nuestra comunidad fitness</p>
+            </div>
+
+            <h2>Nuestro Catálogo</h2>
+            <!-- AGREGAR ESTA LÍNEA: -->
+            <div class="products-count" id="products-count"></div>
+
+            <!-- Filtros -->
+            <div class="filters">
+                <button class="filter-btn active" data-filter="all">Todos</button>
+                <!--<button class="filter-btn" data-filter="proteina">Proteínas & Suplementos</button>-->
+                <button class="filter-btn" data-filter="equipo">Equipamiento</button>
+                <button class="filter-btn" data-filter="ropa">Ropa Deportiva</button>
+                <button class="filter-btn" data-filter="accesorios">Accesorios</button>
+            </div>
+
+    <!-- Grid de productos -->
+                <div id="products-grid" class="products-grid">
+                    <!-- Los productos se cargan aquí -->
+                </div>
+            </div>
+    </section>
+
+    <!-- Carrito de Compras -->
+    <div id="cart-modal" class="modal">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <h2>Tu Carrito</h2>
+            <div id="cart-items" class="cart-items">
+                <!-- Items del carrito -->
+            </div>
+            <div class="cart-total">
+                <h3>Total: $<span id="cart-total">0</span></h3>
+                <button id="checkout-btn" class="checkout-btn">Proceder al Pago</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <!-- Scripts -->
+    <!-- <script src="productos.js"></script>-->
+    <script src="productos-reales.js"></script>
+    <script src="carrito.js"></script>
+    <script src="script.js"></script>
+
+
+    <!--<script>
+        // Contador simple de visitas
+        if (typeof(Storage) !== "undefined") {
+            let visitCount = localStorage.getItem('visitCount') || 0;
+            visitCount = parseInt(visitCount) + 1;
+            localStorage.setItem('visitCount', visitCount);
+            document.getElementById('visitCount').textContent = visitCount;
+        }
+    </script>-->
+	<script src="analytics-google-forms.js"></script>
+    
+	
+<!-- </script>-->
+    <!-- EmailJS
+    emailjs.init('7FJEqGW5kuUpq-edF'); // Tu PUBLIC KEY
+    const SERVICE_ID = 'service_h47mj9d';    // Tu SERVICE ID
+    const TEMPLATE_ID = 'template_551nmwl';  // Tu TEMPLATE ID -->
+    <!-- Sección de Contacto Mejorada -->
+    <section id="contacto" class="contact-section">
+        <div class="container">
+            <!-- Header de la sección -->
+            <div class="section-header">
+                <h2>Contáctanos</h2>
+                <p>Estamos aquí para ayudarte en tu journey fitness</p>
+                <div class="header-decoration">
+                    <div class="decoration-line"></div>
+                    <div class="decoration-icon">💪</div>
+                    <div class="decoration-line"></div>
+                </div>
+            </div>
+
+            <div class="contact-grid">
+                <!-- Información de Contacto - Tarjeta Izquierda -->
+                <div class="contact-info-card">
+                    <div class="card-header">
+                        <h3>📞 Información de Contacto</h3>
+                        <p>Múltiples formas de contactarnos</p>
+                    </div>
+
+                    <div class="contact-methods">
+                        <!-- Email -->
+                        <div class="contact-method">
+                            <div class="method-icon">
+                                <i class="fas fa-envelope"></i>
+                            </div>
+                            <div class="method-content">
+                                <h4>Email Oficial</h4>
+                                <p>info@sportandfitness.cl</p>
+                                <span>Respuestas 24h</span>
+                            </div>
+                        </div>
+
+                        <!-- Teléfono -->
+                        <div class="contact-method">
+                            <div class="method-icon">
+                                <i class="fas fa-phone"></i>
+                            </div>
+                            <div class="method-content">
+                                <h4>Teléfono/WhatsApp</h4>
+                                <p>+56 9 3509 1170</p>
+                                <span>Lun-Vie: 9:00 - 18:00</span>
+                            </div>
+                        </div>
+
+                        <!-- Ubicación -->
+                        <div class="contact-method">
+                            <div class="method-icon">
+                                <i class="fas fa-map-marker-alt"></i>
+                            </div>
+                            <div class="method-content">
+                                <h4>Ubicación</h4>
+                                <p>rosales S/N</p>
+                                <span>Isla de Maipo, Chile</span>
+                            </div>
+                        </div>
+
+                        <!-- Redes Sociales -->
+                        <div class="contact-method">
+                            <div class="method-icon">
+                                <i class="fas fa-share-alt"></i>
+                            </div>
+                            <div class="method-content">
+                                <h4>Síguenos</h4>
+                                <div class="social-links">
+                                    <a href="#" class="social-link">📘 Facebook</a>
+                                    <a href="#" class="social-link">📷 Instagram</a>
+                                    <a href="#" class="social-link">🐦 Twitter</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Estadísticas -->
+                    <div class="contact-stats">
+                        <div class="stat-item">
+                            <div class="stat-number">24h</div>
+                            <div class="stat-label">Respuesta</div>
+                        </div>
+                        <div class="stat-item">
+                            <div class="stat-number">100%</div>
+                            <div class="stat-label">Satisfacción</div>
+                        </div>
+                        <div class="stat-item">
+                            <div class="stat-number">4.9★</div>
+                            <div class="stat-label">Rating</div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Formulario - Tarjeta Derecha -->
+                <div class="contact-form-card">
+                    <div class="form-header">
+                        <h3>Envíanos un Mensaje</h3>
+                        <p>Completa el formulario y te contactaremos</p>
+                    </div>
+
+                    <form id="contact-form" class="modern-form">
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="name">Nombre Completo * </label>
+                                <input type="text" id="name" name="name" placeholder="Ej: Juanita Pérez" required>
+                                <!--<i class="fas fa-user input-icon"></i>-->
+                            </div>
+                            <div class="form-group">
+                                <label for="email">Email *</label>
+                                <input type="email" id="email" name="email" placeholder="ejemplo@email.com" required>
+                                <!-- <i class="fas fa-envelope input-icon"></i>-->
+                            </div>
+                        </div>
+
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="phone">Teléfono</label>
+                                <input type="tel" id="phone" name="phone" placeholder="+56 9 3509 1170">
+                                <!-- <i class="fas fa-phone input-icon"></i>-->
+                            </div>
+                            <div class="form-group">
+                                <label for="subject">Asunto *</label>
+                                <select id="subject" name="subject" required>
+                                    <option value="">Selecciona un tema</option>
+                                    <option value="Consulta General">Consulta General</option>
+                                    <option value="Información de Productos">Información de Productos</option>
+                                    <option value="Soporte Técnico">Soporte Técnico</option>
+                                    <option value="Alianzas Comerciales">Alianzas Comerciales</option>
+                                    <option value="Sugerencias">Sugerencias</option>
+                                </select>
+                                <!-- <i class="fas fa-tag input-icon"></i>-->
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="message">Mensaje *</label>
+                            <textarea id="message" name="message" placeholder="Cuéntanos en qué podemos ayudarte..." rows="5" required></textarea>
+                            <!-- <i class="fas fa-comment input-icon textarea-icon"></i>-->
+                        </div>
+
+                        <button type="submit" class="submit-btn" id="submit-btn">
+                            <span class="btn-content">
+                                <span id="btn-text">📧 Enviar Mensaje</span>
+                                <div id="btn-loading" class="loading-spinner"></div>
+                            </span>
+                        </button>
+                    </form>
+
+                    <div id="form-message" class="form-message"></div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- EmailJS -->
+    <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
+    <script>
+        // Configuración EmailJS (usa tus credenciales)
+        emailjs.init('7FJEqGW5kuUpq-edF'); // Tu PUBLIC KEY
+        const SERVICE_ID = 'service_h47mj9d';    // Tu SERVICE ID
+        const TEMPLATE_ID = 'template_551nmwl';  // Tu TEMPLATE ID
+
+        document.getElementById('contact-form').addEventListener('submit', function (e) {
+            e.preventDefault();
+
+            const submitBtn = document.getElementById('submit-btn');
+            const btnText = document.getElementById('btn-text');
+            const spinner = document.getElementById('btn-loading');
+            const messageDiv = document.getElementById('form-message');
+
+            // Estado de carga
+            btnText.textContent = 'Enviando...';
+            spinner.style.display = 'block';
+            submitBtn.disabled = true;
+
+            // Enviar email
+            emailjs.send(SERVICE_ID, TEMPLATE_ID, {
+                name: document.getElementById('name').value,
+                email: document.getElementById('email').value,
+                phone: document.getElementById('phone').value || 'No proporcionado',
+                subject: document.getElementById('subject').value,
+                message: document.getElementById('message').value,
+                date: new Date().toLocaleString('es-CL')
+            })
+                .then(function (response) {
+                    // Éxito
+                    messageDiv.innerHTML = `
+                                                                                        <div class="message-success">
+                                                                                            <i class="fas fa-check-circle"></i>
+                                                                                            <div>
+                                                                                                <h4>¡Mensaje Enviado Exitosamente!</h4>
+                                                                                                <p>Hemos recibido tu mensaje. Te contactaremos dentro de las próximas 24 horas.</p>
+                                                                                            </div>
+                                                                                        </div>
+                                                                                    `;
+                    messageDiv.style.display = 'block';
+                    document.getElementById('contact-form').reset();
+
+                    // Restaurar botón
+                    setTimeout(() => {
+                        btnText.textContent = 'Enviar Mensaje';
+                        spinner.style.display = 'none';
+                        submitBtn.disabled = false;
+                    }, 2000);
+
+                }, function (error) {
+                    // Error
+                    messageDiv.innerHTML = `
+                                                                                        <div class="message-error">
+                                                                                            <i class="fas fa-exclamation-circle"></i>
+                                                                                            <div>
+                                                                                                <h4>Error al Enviar</h4>
+                                                                                                <p>Por favor, escríbenos directamente a: <strong>info@sportandfitness.cl</strong></p>
+                                                                                            </div>
+                                                                                        </div>
+                                                                                    `;
+                    messageDiv.style.display = 'block';
+
+                    // Restaurar botón
+                    btnText.textContent = 'Enviar Mensaje';
+                    spinner.style.display = 'none';
+                    submitBtn.disabled = false;
+                });
+        });
+    </script>
+
+    <footer>
+        <div class="footer-content">
+            <div class="payment-methods">
+                <h3>Métodos de Pago</h3>
+                <div class="payment-icons">
+                    <i class="fab fa-cc-visa"></i>
+                    <i class="fab fa-cc-mastercard"></i>
+                    <i class="fab fa-cc-paypal"></i>
+                </div>
+            </div>
+        </div>
+        <p class="copyright">&copy; 2025 Sport & Fitness. Todos los derechos reservados.</p>
+    </footer>
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
