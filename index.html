@@ -13,6 +13,55 @@
   function gtag(){dataLayer.push(arguments);}
   gtag('js', new Date());
   gtag('config', 'G-R5H1ZXB125');
+
+  <section style="max-width:900px;margin:60px auto;padding:0 20px;text-align:left;">
+  <h2>🆕 Ofertas recientes</h2>
+  <p id="ofertas-status" style="opacity:.8;">Cargando...</p>
+  <div id="ofertas" style="display:grid;gap:16px;"></div>
+</section>
+
+<script>
+async function cargarOfertas() {
+  const status = document.getElementById("ofertas-status");
+  const cont = document.getElementById("ofertas");
+
+  try {
+    // cache-bust para que no se quede pegado por caché
+    const res = await fetch("/data/ofertas.json?v=" + Date.now());
+    if (!res.ok) throw new Error("HTTP " + res.status);
+
+    const data = await res.json();
+    const items = data.items || [];
+
+    if (items.length === 0) {
+      status.textContent = "Aún no hay ofertas publicadas.";
+      return;
+    }
+
+    status.textContent = "Última actualización: " + (data.updated_at || "");
+
+    cont.innerHTML = items.slice(0, 12).map(o => `
+      <a href="${o.url}" target="_blank"
+         style="text-decoration:none;color:white;background:rgba(255,255,255,0.10);border-radius:16px;overflow:hidden;display:flex;gap:14px;padding:14px;">
+        <img src="${o.image || 'https://sportandfitness.cl/assets/placeholder.jpg'}"
+             style="width:96px;height:96px;object-fit:cover;border-radius:12px;" />
+        <div style="flex:1;">
+          <div style="font-weight:700;margin-bottom:6px;">${o.title}</div>
+          <div style="opacity:.9;">💰 $${Number(o.price).toLocaleString("es-CL")}</div>
+          <div style="opacity:.7;font-size:13px;margin-top:4px;">${o.source || ""}</div>
+        </div>
+      </a>
+    `).join("");
+
+  } catch (e) {
+    status.textContent = "No se pudieron cargar las ofertas (revisa data/ofertas.json).";
+    console.error(e);
+  }
+}
+
+cargarOfertas();
+</script>
+
 </script>
 
     <meta charset="UTF-8">
