@@ -1,10 +1,12 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-<meta property="og:title" content="Sport & Fitness Ofertas">
-<meta property="og:description" content="Recibe alertas deportivas en Telegram">
-<meta property="og:image" content="https://sportandfitness.cl/preview.jpg">
-<meta property="og:type" content="website">
+<meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sport & Fitness Chile | Guías de Entrenamiento y Suplementación</title>
+    <meta name="description" content="Tu portal de fitness en Chile. Reseñas de suplementos, rutinas de ejercicio y consejos para una vida sana en sportandfitness.cl.">
+    
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-XXXXXXXXXXXX" crossorigin="anonymous"></script>
 
 <!-- Google tag (gtag.js) -->
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-R5H1ZXB125"></script>
@@ -14,178 +16,25 @@
   gtag('js', new Date());
   gtag('config', 'G-R5H1ZXB125');
 </script>
-   <section style="max-width:900px;margin:60px auto;padding:0 20px;text-align:left;">
-  <h2>🆕 Ofertas recientes</h2>
-  <p id="ofertas-status" style="opacity:.8;">Cargando...</p>
-  <div id="ofertas" style="display:grid;gap:16px;"></div>
-</section>
 
-<script>
-async function cargarOfertas() {
-  const status = document.getElementById("ofertas-status");
-  const cont = document.getElementById("ofertas");
-
-  try {
-    // cache-bust para que no se quede pegado por caché
-    const res = await fetch("/data/ofertas.json?v=" + Date.now());
-    if (!res.ok) throw new Error("HTTP " + res.status);
-
-    const data = await res.json();
-    const items = data.items || [];
-
-    if (items.length === 0) {
-      status.textContent = "Aún no hay ofertas publicadas.";
-      return;
-    }
-
-    status.textContent = "Última actualización: " + (data.updated_at || "");
-
-    cont.innerHTML = items.slice(0, 12).map(o => `
-      <a href="${o.url}" target="_blank"
-         style="text-decoration:none;color:white;background:rgba(255,255,255,0.10);border-radius:16px;overflow:hidden;display:flex;gap:14px;padding:14px;">
-        <img src="${o.image || 'https://sportandfitness.cl/assets/placeholder.jpg'}"
-             style="width:96px;height:96px;object-fit:cover;border-radius:12px;" />
-        <div style="flex:1;">
-          <div style="font-weight:700;margin-bottom:6px;">${o.title}</div>
-          <div style="opacity:.9;">💰 $${Number(o.price).toLocaleString("es-CL")}</div>
-          <div style="opacity:.7;font-size:13px;margin-top:4px;">${o.source || ""}</div>
-        </div>
-      </a>
-    `).join("");
-
-  } catch (e) {
-    status.textContent = "No se pudieron cargar las ofertas (revisa data/ofertas.json).";
-    console.error(e);
-  }
-}
-
-cargarOfertas();
-</script>
-  
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <!--<title>Sport & Fitness | Bot de Ofertas</title>
-    <meta name="description" content="Recibe alertas automáticas de ofertas deportivas directamente en tu Telegram.">-->
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;500;700&display=swap" rel="stylesheet">
-    <style>
-        body {
-            margin: 0;
-            font-family: 'Poppins', sans-serif;
-            background: linear-gradient(135deg, #0f2027, #203a43, #2c5364);
-            color: white;
-            text-align: center;
-        }
-
-        .container {
-            padding: 80px 20px;
-            max-width: 900px;
-            margin: auto;
-        }
-
-        h1 {
-            font-size: 48px;
-            margin-bottom: 20px;
-        }
-
-        p {
-            font-size: 20px;
-            opacity: 0.9;
-        }
-
-        .btn {
-            display: inline-block;
-            margin-top: 40px;
-            padding: 18px 40px;
-            font-size: 20px;
-            font-weight: 600;
-            border-radius: 50px;
-            background: #ff3c00;
-            color: white;
-            text-decoration: none;
-            transition: 0.3s;
-        }
-
-        .btn:hover {
-            background: #ff5e2e;
-            transform: scale(1.05);
-        }
-
-        .section {
-            margin-top: 100px;
-        }
-
-        .card {
-            background: rgba(255,255,255,0.1);
-            padding: 30px;
-            border-radius: 20px;
-            margin: 20px 0;
-        }
-
-        footer {
-            margin-top: 100px;
-            padding: 30px;
-            font-size: 14px;
-            opacity: 0.6;
-        }
-
-        @media (max-width: 600px) {
-            h1 {
-                font-size: 32px;
-            }
-
-            p {
-                font-size: 16px;
-            }
-        }
-    </style>
 </head>
 <body>
 
-<div class="container">
-    <h1>🔥 Sport & Fitness Ofertas</h1>
-    <p>Recibe alertas automáticas cuando detectamos descuentos en productos deportivos.</p>
-
-    <a href="https://t.me/+j-DbMS-zLEswZWEx" class="btn" target="_blank">
-        🚀 Unirme al Bot en Telegram
-    </a>
-
-    <div class="section">
-        <h2>¿Cómo funciona?</h2>
-
-        <div class="card">
-            🛒 Monitoreamos productos deportivos automáticamente
-        </div>
-
-        <div class="card">
-            💰 Detectamos bajadas de precio en tiempo real
-        </div>
-
-        <div class="card">
-            📲 Te avisamos directamente en Telegram
-        </div>
-    </div>
-
-    <div class="section">
-        <h2>¿Por qué usarlo?</h2>
-
-        <div class="card">
-            ⚡ Alertas instantáneas
-        </div>
-
-        <div class="card">
-            🔎 Seguimiento automático
-        </div>
-
-        <div class="card">
-            🎯 Nunca más perder una oferta
-        </div>
-    </div>
-</div>
-
-<footer>
-  <a href="privacidad.html">Política de Privacidad</a>
-    © 2026 Sport & Fitness | Bot de Ofertas en Telegram
+<h1>Bienvenidos a Sport & Fitness Chile</h1>
+<section id="hero" style="text-align: center; padding: 40px 20px; background-color: #f4f4f4;">
+    <h1 style="color: #d32f2f;">Sport & Fitness Chile</h1>
+    <p style="max-width: 800px; margin: 0 auto; font-size: 1.1em; line-height: 1.6; color: #444;">
+        En <strong>Sport & Fitness Chile</strong>, nuestra misión es simplificar el camino hacia una vida más saludable y activa para todos los chilenos. Desde guías detalladas sobre la mejor suplementación disponible en el mercado nacional hasta rutinas de entrenamiento adaptadas a tu ritmo de vida, te entregamos las herramientas necesarias para alcanzar tu mejor versión física. Creemos que ponerse en forma no tiene por qué ser complicado ni costoso, por eso compartimos consejos prácticos y basados en evidencia para que logres tus objetivos desde cualquier rincón de Chile.
+    </p>
+</section>
+  <footer>
+    <hr>
+    <p>&copy; 2026 Sport & Fitness Chile. Todos los derechos reservados.</p>
+    <nav>
+        <a href="index.html">Inicio</a> | 
+        <a href="privacidad.html">Política de Privacidad</a> | 
+        <a href="contacto.html">Contacto</a>
+    </nav>
 </footer>
-
 </body>
 </html>
