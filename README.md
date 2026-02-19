@@ -1,11 +1,22 @@
-# Sport & Fitness Website
+# Sport & Fitness Chile — Artículos HTML (AdSense Ready)
 
-Página web oficial de Sport & Fitness Chile.
+Este repositorio contiene páginas HTML estáticas (artículos) con un diseño limpio, responsive y orientado a SEO, listas para publicarse en un hosting (dominio propio recomendado) y posteriormente solicitar/aplicar **Google AdSense**.
 
-## Características
-- Diseño responsive
-- Secciones: Inicio, Servicios, Nosotros, Contacto
-- Optimizada para GitHub Pages
+---
 
-## Desarrollo
-Para ejecutar localmente, simplemente abre `index.html` en tu navegador.
+##  Contenido del repositorio
+
+Artículos incluidos (HTML individuales):
+
+- **Rutina de Gimnasio en Casa** (`rutina-gimnasio-en-casa.html`)
+- **Nutrición para Deportistas** (`nutricion-para-deportistas.html`)
+- **Las 5 Mejores Proteínas** (`las-5-mejores-proteinas.html`)
+
+Cada archivo incluye:
+- Diseño completo con CSS embebido
+- Estructura semántica (header, main, footer)
+- Meta title + meta description
+- Responsive para móvil/tablet
+
+---
+
