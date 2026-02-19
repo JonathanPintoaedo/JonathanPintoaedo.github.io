@@ -1,94 +1,446 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Mejores Proteínas Chile 2026 | Sport & Fitness</title>
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700;900&display=swap" rel="stylesheet">
-    <style>
-        :root { --rojo: #d32f2f; --negro: #1a1a1a; --gris: #f4f4f4; }
-        body { font-family: 'Montserrat', sans-serif; margin: 0; line-height: 1.8; color: #333; }
-        .hero-article { background: linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.7)), url('https://images.unsplash.com/photo-1579758629938-03607ccdbaba?auto=format&fit=crop&w=1350&q=80'); 
-                        height: 300px; display: flex; align-items: center; justify-content: center; color: white; text-align: center; padding: 20px; }
-        .container { max-width: 850px; margin: 40px auto; padding: 0 20px; }
-        h2 { color: var(--rojo); font-weight: 900; text-transform: uppercase; margin-top: 40px; }
-        .product-box { background: var(--gris); border-left: 6px solid var(--rojo); padding: 25px; border-radius: 0 12px 12px 0; margin: 20px 0; }
-        table { width: 100%; border-collapse: collapse; margin: 30px 0; background: white; border-radius: 8px; overflow: hidden; }
-        th { background: var(--negro); color: white; padding: 15px; }
-        td { border-bottom: 1px solid #ddd; padding: 15px; }
-        footer { background: var(--negro); color: white; text-align: center; padding: 40px; }
-        footer a { color: white; text-decoration: none; font-weight: bold; margin: 0 10px; }
-    </style>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Las 5 Mejores Proteínas | Sport & Fitness Chile</title>
+  <meta name="description" content="Las 5 mejores proteínas: guía completa para elegir whey, isolate, caseína, vegana y blend. Comparación, beneficios, cuándo tomar, cómo elegir según objetivo, y errores comunes." />
+
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700;900&display=swap" rel="stylesheet">
+
+  <style>
+    :root{
+      --rojo:#d32f2f;
+      --negro:#1a1a1a;
+      --gris-claro:#f4f4f4;
+      --blanco:#ffffff;
+      --azul-suave:#e3f2fd;
+      --verde-suave:#e8f5e9;
+      --amarillo-suave:#fff8e1;
+      --morado-suave:#f3e5f5;
+      --rojo-suave:#ffebee;
+    }
+
+    body{
+      font-family:'Montserrat', sans-serif;
+      margin:0;
+      padding:0;
+      color:#333;
+      line-height:1.8;
+      background-color:var(--gris-claro);
+    }
+
+    /* Hero del Artículo */
+    .hero-article{
+      background: linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.7)),
+                  url('https://images.unsplash.com/photo-1599058917212-d750089bc07a?auto=format&fit=crop&w=1350&q=80');
+      background-size:cover;
+      background-position:center;
+      height:40vh;
+      display:flex;
+      justify-content:center;
+      align-items:center;
+      text-align:center;
+      color:var(--blanco);
+    }
+
+    .hero-article h1{
+      font-size:2.5rem;
+      font-weight:900;
+      text-transform:uppercase;
+      padding:0 20px;
+      margin:0;
+    }
+
+    /* Contenido */
+    .container{
+      max-width:850px;
+      margin:-40px auto 50px;
+      background:var(--blanco);
+      padding:40px;
+      border-radius:12px;
+      box-shadow:0 10px 30px rgba(0,0,0,0.1);
+    }
+
+    h2{
+      color:var(--rojo);
+      border-left:5px solid var(--rojo);
+      padding-left:15px;
+      margin-top:40px;
+      text-transform:uppercase;
+    }
+
+    h3{
+      margin-top:25px;
+      color:var(--negro);
+    }
+
+    .equipamiento-box{
+      background:var(--azul-suave);
+      border-radius:8px;
+      padding:20px;
+      margin:20px 0;
+    }
+
+    .tip-box{
+      background:var(--verde-suave);
+      border-radius:8px;
+      padding:20px;
+      margin:20px 0;
+      border-left:6px solid #2e7d32;
+    }
+
+    .warning-box{
+      background:var(--amarillo-suave);
+      border-radius:8px;
+      padding:20px;
+      margin:20px 0;
+      border-left:6px solid #f9a825;
+    }
+
+    .plan-box{
+      background:var(--morado-suave);
+      border-radius:8px;
+      padding:20px;
+      margin:20px 0;
+      border-left:6px solid #7b1fa2;
+    }
+
+    .checklist-box{
+      background:var(--rojo-suave);
+      border-radius:8px;
+      padding:20px;
+      margin:20px 0;
+      border-left:6px solid var(--rojo);
+    }
+
+    .ejercicio-card{
+      background:var(--gris-claro);
+      padding:20px;
+      border-radius:8px;
+      margin-bottom:15px;
+      border-bottom:3px solid var(--rojo);
+    }
+
+    .tag{
+      display:inline-block;
+      font-size:0.85rem;
+      padding:4px 10px;
+      border-radius:999px;
+      background:#fff;
+      border:1px solid #ddd;
+      margin:6px 6px 0 0;
+    }
+
+    .mini{
+      font-size:0.95rem;
+      opacity:0.95;
+    }
+
+    .lista{
+      margin:10px 0 0 20px;
+    }
+
+    .tabla-wrap{
+      overflow-x:auto;
+      margin:15px 0;
+    }
+
+    table{
+      width:100%;
+      border-collapse:collapse;
+      min-width:760px;
+      background:#fff;
+      border-radius:10px;
+      overflow:hidden;
+      box-shadow:0 6px 18px rgba(0,0,0,0.06);
+    }
+
+    th, td{
+      padding:12px 14px;
+      border-bottom:1px solid #eee;
+      text-align:left;
+      vertical-align:top;
+      font-size:0.95rem;
+    }
+
+    th{
+      background:var(--negro);
+      color:var(--blanco);
+      font-weight:700;
+      letter-spacing:0.2px;
+    }
+
+    tr:last-child td{ border-bottom:none; }
+
+    .btn-volver{
+      display:inline-block;
+      margin-top:30px;
+      color:var(--rojo);
+      text-decoration:none;
+      font-weight:bold;
+    }
+
+    footer{
+      background:var(--negro);
+      color:var(--blanco);
+      text-align:center;
+      padding:40px 20px;
+    }
+
+    footer nav a{
+      color:var(--blanco);
+      text-decoration:none;
+      margin:0 10px;
+    }
+
+    @media (max-width: 768px){
+      .container{ margin-top:0; border-radius:0; padding:20px; }
+      .hero-article h1{ font-size:1.8rem; }
+      table{ min-width:560px; }
+    }
+  </style>
 </head>
+
 <body>
-    <div class="hero-article">
-        <h1>Las 5 Mejores Proteínas Whey en Chile (2026)</h1>
-    </div>
-    <main class="container">
-      
-<div class="content">
-    <p>Si estás buscando maximizar tus ganancias musculares o simplemente mejorar tu recuperación tras un entrenamiento intenso en el gimnasio, la <strong>proteína de suero de leche (Whey Protein)</strong> es tu mejor aliada. Sin embargo, con tantas marcas en el mercado chileno, elegir la correcta puede ser confuso.</p>
-    
-    <p>En este artículo, analizamos las opciones más populares disponibles en tiendas como <em>All Supplements, Nutratech y grandes retailers</em>, considerando su pureza, sabor y relación calidad-precio.</p>
 
-    <h2>1. Gold Standard 100% Whey (Optimum Nutrition)</h2>
-    <div class="producto">
-        <span class="badge">LA MÁS RECONOCIDA</span>
-        <p>Es el estándar de la industria. Cada porción entrega 24g de proteína con un perfil de aminoácidos excelente. Es ideal si no quieres arriesgarte con el sabor, ya que su disolución es perfecta.</p>
-        <ul>
-            <li><strong>Pros:</strong> Muy baja en grasa y carbohidratos.</li>
-            <li><strong>Contras:</strong> Precio elevado en comparación a marcas locales.</li>
-        </ul>
-    </div>
+  <header class="hero-article">
+    <h1>Las 5 Mejores Proteínas: Guía Completa</h1>
+  </header>
 
-    <h2>2. Nitro Tech (Muscletech)</h2>
-    <div class="producto">
-        <p>A diferencia de la Whey estándar, esta incluye 3g de creatina por servicio, lo que la hace ideal para quienes buscan volumen y fuerza sin comprar suplementos por separado.</p>
-    </div>
+  <main class="container">
+    <p>
+      Cuando alguien dice “proteína”, casi siempre piensa en <strong>suplementos</strong>. Pero en realidad hay dos mundos:
+      <strong>proteína de alimentos</strong> (la base) y <strong>proteína en polvo</strong> (una herramienta práctica).
+      En esta guía te explicamos las <strong>5 mejores proteínas</strong> (en formato suplemento) según objetivo,
+      tolerancia digestiva, precio y momento ideal para tomarlas.
+    </p>
 
-    <h2>3. ISO 100 (Dymatize)</h2>
-    <div class="producto">
-        <span class="badge">PARA DEFINICIÓN</span>
-        <p>Si eres intolerante a la lactosa o estás en una etapa de corte estricto, esta proteína hidrolizada es la mejor opción. Cero azúcar y cero grasa.</p>
+    <div class="tip-box">
+      <strong>Idea clave:</strong> la “mejor proteína” es la que te ayuda a llegar a tu meta diaria de proteína
+      sin problemas digestivos y sin romper tu presupuesto.
+      <div class="mini">
+        <span class="tag">Ganar músculo</span>
+        <span class="tag">Recuperación</span>
+        <span class="tag">Definición</span>
+        <span class="tag">Practicidad</span>
+      </div>
     </div>
 
-    <h2>Tabla Comparativa de Precios Estimados (Chile)</h2>
-    <table>
-        <tr>
-            <th>Marca</th>
-            <th>Formato</th>
-            <th>Precio Aprox. (CLP)</th>
-        </tr>
-        <tr>
-            <td>ON Gold Standard</td>
-            <td>5 lbs</td>
-            <td>$64.990 - $72.990</td>
-        </tr>
-        <tr>
-            <td>Nitro Tech</td>
-            <td>4 lbs</td>
-            <td>$58.990 - $65.000</td>
-        </tr>
-        <tr>
-            <td>ISO 100</td>
-            <td>5 lbs</td>
-            <td>$85.000+</td>
-        </tr>
-    </table>
-
-    <div class="cta-box">
-        <h3>¿Buscas asesoría personalizada?</h3>
-        <p>No olvides consultar con un nutricionista deportivo antes de comenzar cualquier suplementación intensa.</p>
-        <a href="contacto.html">Contáctanos para más dudas</a>
+    <h2>Antes de elegir: 4 cosas que debes revisar en la etiqueta</h2>
+    <div class="equipamiento-box">
+      <ul class="lista">
+        <li><strong>Proteína por porción:</strong> idealmente alta (según el tipo, suele variar).</li>
+        <li><strong>Azúcar y grasas:</strong> mientras más bajo, más “limpia” suele ser (ojo con sabores).</li>
+        <li><strong>Ingredientes:</strong> menos “relleno” y mejor tolerancia (endulzantes, lactosa, etc.).</li>
+        <li><strong>Certificación/calidad:</strong> marca confiable, lote, sellos o análisis (si están disponibles).</li>
+      </ul>
+      <p class="mini"><strong>Tip:</strong> si te inflamas o te cae mal, prueba cambiar a isolate o proteína vegetal.</p>
     </div>
 
-    <h2>Consejos para comprar en Chile</h2>
-    <p>Siempre verifica que el producto tenga el sello de importación original y revisa la fecha de vencimiento. Lugares como el centro de Santiago o Providencia tienen tiendas especializadas donde puedes encontrar mejores ofertas que en farmacias tradicionales.</p>
-</div>
+    <h2>Las 5 mejores proteínas (y para quién sirven)</h2>
 
-    </main>
-    <footer>
+    <h3>1) Whey Protein Concentrate (Suero Concentrado)</h3>
+    <div class="ejercicio-card">
+      <p>
+        Es la opción más popular por su relación <strong>precio/calidad</strong>. Suele tener excelente perfil de aminoácidos
+        y funciona muy bien para la mayoría.
+      </p>
+      <ul class="lista">
+        <li><strong>Ideal para:</strong> principiantes e intermedios, volumen o mantenimiento.</li>
+        <li><strong>Ventajas:</strong> buena calidad, generalmente más económica.</li>
+        <li><strong>Ojo con:</strong> puede contener más lactosa que un isolate (si eres sensible).</li>
+        <li><strong>Cuándo tomar:</strong> post-entreno o como colación para completar proteína diaria.</li>
+      </ul>
+      <div class="mini">
+        <span class="tag">Mejor calidad/precio</span>
+        <span class="tag">Uso diario</span>
+      </div>
+    </div>
+
+    <h3>2) Whey Protein Isolate (Suero Aislado)</h3>
+    <div class="ejercicio-card">
+      <p>
+        Más “pura”: normalmente tiene <strong>más proteína por porción</strong>, menos carbohidratos y menos grasa,
+        y suele ser más amigable si te cae pesada la lactosa.
+      </p>
+      <ul class="lista">
+        <li><strong>Ideal para:</strong> definición, personas sensibles a lactosa, atletas que cuidan macros.</li>
+        <li><strong>Ventajas:</strong> alta concentración, digestión más ligera en muchos casos.</li>
+        <li><strong>Ojo con:</strong> suele ser más cara.</li>
+        <li><strong>Cuándo tomar:</strong> post-entreno, o cuando quieres proteína rápida y “limpia”.</li>
+      </ul>
+      <div class="mini">
+        <span class="tag">Definición</span>
+        <span class="tag">Baja lactosa</span>
+      </div>
+    </div>
+
+    <h3>3) Caseína (Proteína de digestión lenta)</h3>
+    <div class="ejercicio-card">
+      <p>
+        La caseína se digiere más lento, por eso se asocia a periodos largos sin comer.
+        No es “mejor” que whey, es <strong>otra herramienta</strong>.
+      </p>
+      <ul class="lista">
+        <li><strong>Ideal para:</strong> tomar en la noche o entre comidas largas.</li>
+        <li><strong>Ventajas:</strong> alta saciedad, liberación más sostenida.</li>
+        <li><strong>Ojo con:</strong> textura más espesa, y si eres sensible a lácteos puede molestar.</li>
+        <li><strong>Cuándo tomar:</strong> antes de dormir o como colación “anti-picoteo”.</li>
+      </ul>
+      <div class="mini">
+        <span class="tag">Sacia más</span>
+        <span class="tag">Noche</span>
+      </div>
+    </div>
+
+    <h3>4) Proteína Vegetal (Arveja, Arroz, Soya, Blend)</h3>
+    <div class="ejercicio-card">
+      <p>
+        Excelente alternativa si eres vegano/vegetariano, o si los lácteos te caen mal.
+        Muchas marcas usan <strong>blends</strong> (mezclas) para lograr un perfil de aminoácidos más completo.
+      </p>
+      <ul class="lista">
+        <li><strong>Ideal para:</strong> veganos, intolerancia a lactosa, estómagos sensibles.</li>
+        <li><strong>Ventajas:</strong> buena tolerancia, variedad de sabores, opciones sin lactosa.</li>
+        <li><strong>Ojo con:</strong> algunas tienen textura arenosa; revisa ingredientes y sodio.</li>
+        <li><strong>Cuándo tomar:</strong> igual que whey: post-entreno o colación.</li>
+      </ul>
+      <div class="mini">
+        <span class="tag">Sin lactosa</span>
+        <span class="tag">Vegano</span>
+      </div>
+    </div>
+
+    <h3>5) Proteína “Blend” (Mezcla de fuentes)</h3>
+    <div class="ejercicio-card">
+      <p>
+        Las blends mezclan distintas fuentes (por ejemplo: whey + caseína, o vegetal + vegetal). La idea es equilibrar
+        digestión, textura y perfil de aminoácidos. Muchas son muy buenas como proteína “todo terreno”.
+      </p>
+      <ul class="lista">
+        <li><strong>Ideal para:</strong> quienes quieren una proteína versátil, saciedad moderada y buen sabor.</li>
+        <li><strong>Ventajas:</strong> balance entre rápida y lenta (según mezcla), buena experiencia al tomarla.</li>
+        <li><strong>Ojo con:</strong> algunas mezclas traen más “relleno” (maltodextrina, etc.).</li>
+        <li><strong>Cuándo tomar:</strong> entre comidas, post-entreno o cuando te convenga por horario.</li>
+      </ul>
+      <div class="mini">
+        <span class="tag">Versátil</span>
+        <span class="tag">Sabor/ textura</span>
+      </div>
+    </div>
+
+    <h2>Comparación rápida (para elegir en 30 segundos)</h2>
+    <div class="tabla-wrap">
+      <table>
+        <thead>
+          <tr>
+            <th>Tipo de proteína</th>
+            <th>Lo mejor</th>
+            <th>Ideal si...</th>
+            <th>Ojo con...</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><strong>Whey Concentrate</strong></td>
+            <td>Calidad/precio</td>
+            <td>Quieres lo más rentable</td>
+            <td>Puede tener más lactosa</td>
+          </tr>
+          <tr>
+            <td><strong>Whey Isolate</strong></td>
+            <td>Más “limpia”</td>
+            <td>Definición o estómago sensible</td>
+            <td>Precio más alto</td>
+          </tr>
+          <tr>
+            <td><strong>Caseína</strong></td>
+            <td>Saciedad / lenta</td>
+            <td>Te da hambre de noche</td>
+            <td>Textura espesa</td>
+          </tr>
+          <tr>
+            <td><strong>Vegetal</strong></td>
+            <td>Sin lácteos</td>
+            <td>Eres vegano o intolerante</td>
+            <td>Textura y sabor varían</td>
+          </tr>
+          <tr>
+            <td><strong>Blend</strong></td>
+            <td>Versatilidad</td>
+            <td>Quieres un “todo en uno”</td>
+            <td>Revisar ingredientes</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <h2>¿Cuánta proteína debo consumir al día?</h2>
+    <p>
+      Depende de tu peso, actividad y objetivo, pero una regla práctica es:
+      <strong>repartir proteína en el día</strong> y asegurar una porción sólida en cada comida.
+    </p>
+
+    <div class="plan-box">
+      <strong>Reglas simples (sin complicarse)</strong>
+      <ul class="lista">
+        <li><strong>Si entrenas fuerza:</strong> prioriza proteína en 3–5 comidas.</li>
+        <li><strong>Si estás en déficit:</strong> sube la proteína para mantener músculo y saciedad.</li>
+        <li><strong>Si te cuesta llegar:</strong> un batido puede ser la solución más fácil.</li>
+      </ul>
+      <p class="mini">La proteína en polvo es “comida práctica”, no magia.</p>
+    </div>
+
+    <h2>Cuándo tomar proteína (lo que realmente importa)</h2>
+    <div class="ejercicio-card">
+      <strong>Timing realista</strong>
+      <ul class="lista">
+        <li><strong>Post-entreno:</strong> útil por comodidad, pero no es obligatorio inmediato.</li>
+        <li><strong>Entre comidas:</strong> si no alcanzas tu meta diaria.</li>
+        <li><strong>Desayuno:</strong> perfecto si sueles comer poco temprano.</li>
+        <li><strong>Noche:</strong> caseína o una proteína que te sacie si tienes hambre tarde.</li>
+      </ul>
+      <p class="mini"><strong>Lo más importante:</strong> tu total diario, no el minuto exacto.</p>
+    </div>
+
+    <h2>Errores comunes al comprar proteínas</h2>
+    <div class="warning-box">
+      <ul class="lista">
+        <li>Elegir solo por “sabor” y no mirar proteína real por porción.</li>
+        <li>Ignorar intolerancia a lactosa (y luego culpar a la marca).</li>
+        <li>Comprar mezclas con demasiado azúcar o rellenos.</li>
+        <li>Usarla para reemplazar todas las comidas (no conviene).</li>
+        <li>Creer que la proteína “quema grasa” por sí sola.</li>
+      </ul>
+    </div>
+
+    <h2>Checklist final: la mejor para ti</h2>
+    <div class="checklist-box">
+      <ul class="lista">
+        <li>✅ ¿Me cae bien al estómago?</li>
+        <li>✅ ¿Aporta buena proteína por porción?</li>
+        <li>✅ ¿Se ajusta a mi objetivo (definición, volumen, mantenimiento)?</li>
+        <li>✅ ¿Encaja en mi presupuesto mensual?</li>
+        <li>✅ ¿Me ayuda a cumplir mi meta diaria sin estrés?</li>
+      </ul>
+    </div>
+
+    <h2>Conclusión</h2>
+    <p>
+      No existe una sola “mejor proteína” para todos: depende de tu tolerancia, objetivo y bolsillo.
+      Si buscas lo más rentable, <strong>whey concentrate</strong>. Si quieres lo más “limpio” o te cae pesada la lactosa,
+      <strong>whey isolate</strong>. Para saciedad nocturna, <strong>caseína</strong>. Si evitas lácteos, <strong>proteína vegetal</strong>.
+      Y si quieres una opción versátil, una buena <strong>blend</strong> puede ser perfecta.
+    </p>
+
+    <!--<a class="btn-volver" href="#">← Volver</a>-->
+  </main>
+
+   <footer>
         <nav><a href="index.html">Inicio</a> | <a href="contacto.html">Contacto</a> | <a href="privacidad.html">Privacidad</a></nav>
     </footer>
+
+
 </body>
 </html>
