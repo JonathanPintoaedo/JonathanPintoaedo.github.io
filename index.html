@@ -1,14 +1,16 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-<meta charset="UTF-8">
+    <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Sport & Fitness Chile | Guías de Entrenamiento y Suplementación</title>
-    <meta name="description" content="Tu portal de fitness en Chile. Reseñas de suplementos, rutinas de ejercicio y consejos para una vida sana en sportandfitness.cl.">
+    <meta name="description" content="Tu portal de fitness en Chile. Reseñas de suplementos, rutinas de ejercicio y consejos para una vida sana.">
+    
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700;900&display=swap" rel="stylesheet">
     
     <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-XXXXXXXXXXXX" crossorigin="anonymous"></script>
 
-<!-- Google tag (gtag.js) -->
+   <!-- Google tag (gtag.js) -->
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-R5H1ZXB125"></script>
 <script>
   window.dataLayer = window.dataLayer || [];
@@ -17,27 +19,187 @@
   gtag('config', 'G-R5H1ZXB125');
 </script>
 
+    <style>
+        :root {
+            --rojo: #d32f2f;
+            --negro: #1a1a1a;
+            --gris-claro: #f4f4f4;
+            --blanco: #ffffff;
+        }
+
+        body {
+            font-family: 'Montserrat', sans-serif;
+            margin: 0;
+            padding: 0;
+            color: #333;
+            line-height: 1.6;
+        }
+
+        /* Hero Section */
+        .hero {
+            background: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)), 
+                        url('https://images.unsplash.com/photo-1534438327276-14e5300c3a48?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80');
+            background-size: cover;
+            background-position: center;
+            height: 60vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            color: var(--blanco);
+            padding: 20px;
+        }
+
+        .hero h1 {
+            font-size: 3.5rem;
+            font-weight: 900;
+            margin: 0;
+            text-transform: uppercase;
+            letter-spacing: -1px;
+        }
+
+        .hero p {
+            font-size: 1.2rem;
+            max-width: 700px;
+            margin: 20px 0;
+        }
+
+        /* Seccion Artículos */
+        .container {
+            max-width: 1100px;
+            margin: -50px auto 50px;
+            padding: 20px;
+        }
+
+        .section-title {
+            text-align: center;
+            margin-bottom: 40px;
+            font-size: 2rem;
+            color: var(--negro);
+        }
+
+        .grid-articulos {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+        }
+
+        .card {
+            background: var(--blanco);
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+            transition: transform 0.3s;
+        }
+
+        .card:hover {
+            transform: translateY(-10px);
+        }
+
+        .card-img {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+        }
+
+        .card-content {
+            padding: 20px;
+        }
+
+        .card-content h3 {
+            margin: 0 0 10px 0;
+            font-size: 1.3rem;
+            color: var(--rojo);
+        }
+
+        .btn {
+            display: inline-block;
+            background: var(--rojo);
+            color: var(--blanco);
+            padding: 10px 20px;
+            text-decoration: none;
+            border-radius: 5px;
+            font-weight: bold;
+            margin-top: 10px;
+        }
+
+        /* Footer */
+        footer {
+            background: var(--negro);
+            color: var(--blanco);
+            text-align: center;
+            padding: 40px 20px;
+            margin-top: 50px;
+        }
+
+        footer nav a {
+            color: var(--blanco);
+            text-decoration: none;
+            margin: 0 10px;
+            font-weight: bold;
+        }
+
+        footer nav a:hover {
+            color: var(--rojo);
+        }
+
+        @media (max-width: 768px) {
+            .hero h1 { font-size: 2.2rem; }
+        }
+    </style>
 </head>
 <body>
-<h3>Últimos Artículos</h3>
-<ul>
-    <li><a href="mejores-proteinas-chile.html">Guía: Las 5 mejores proteínas Whey en Chile (2026)</a></li>
-</ul>
-<h1>Bienvenidos a Sport & Fitness Chile</h1>
-<section id="hero" style="text-align: center; padding: 40px 20px; background-color: #f4f4f4;">
-    <h1 style="color: #d32f2f;">Sport & Fitness Chile</h1>
-    <p style="max-width: 800px; margin: 0 auto; font-size: 1.1em; line-height: 1.6; color: #444;">
-        En <strong>Sport & Fitness Chile</strong>, nuestra misión es simplificar el camino hacia una vida más saludable y activa para todos los chilenos. Desde guías detalladas sobre la mejor suplementación disponible en el mercado nacional hasta rutinas de entrenamiento adaptadas a tu ritmo de vida, te entregamos las herramientas necesarias para alcanzar tu mejor versión física. Creemos que ponerse en forma no tiene por qué ser complicado ni costoso, por eso compartimos consejos prácticos y basados en evidencia para que logres tus objetivos desde cualquier rincón de Chile.
-    </p>
-</section>
-  <footer>
-    <hr>
-    <p>&copy; 2026 Sport & Fitness Chile. Todos los derechos reservados.</p>
-    <nav>
-        <a href="index.html">Inicio</a> | 
-        <a href="privacidad.html">Política de Privacidad</a> | 
-        <a href="contacto.html">Contacto</a>
-    </nav>
-</footer>
+
+    <header class="hero">
+        <h1>Sport & Fitness</h1>
+        <p>Simplificamos tu camino hacia una vida saludable. Guías expertas en suplementación y entrenamiento para la comunidad.</p>
+    </header>
+
+    <main class="container">
+        <h2 class="section-title">Últimos Artículos</h2>
+        
+        <div class="grid-articulos">
+            <article class="card">
+                <img src="https://images.unsplash.com/photo-1593079831268-3381b0db4a77?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60" alt="Suplementos Proteína" class="card-img">
+                <div class="card-content">
+                    <h3>Guía: Las 5 mejores proteínas Whey en Chile (2026)</h3>
+                    <p>Analizamos pureza, sabor y precio de las marcas más populares en el mercado nacional.</p>
+                    <a href="mejores-proteinas-chile.html" class="btn">Leer guía completa</a>
+                </div>
+            </article>
+
+            <article class="card">
+                <img src="https://images.unsplash.com/photo-1517836357463-d25dfeac3438?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60" alt="Entrenamiento" class="card-img">
+                <div class="card-content">
+                    <h3>Rutina de Gimnasio en Casa</h3>
+                    <p>Cómo entrenar de forma efectiva sin gastar de más. Equipamiento básico y ejercicios clave.</p>
+                    <a href="#" class="btn" style="background:#888">Próximamente</a>
+                </div>
+            </article>
+
+            <article class="card">
+                <img src="https://images.unsplash.com/photo-1490645935967-10de6ba17061?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60" alt="Nutrición" class="card-img">
+                <div class="card-content">
+                    <h3>Nutrición para Deportistas</h3>
+                    <p>Aprende a calcular tus macros y optimizar tu alimentación para mejorar tu rendimiento.</p>
+                    <a href="#" class="btn" style="background:#888">Próximamente</a>
+                </div>
+            </article>
+        </div>
+    </main>
+
+    <footer>
+        <p><strong>Sport & Fitness Chile</strong></p>
+        <p>Tu recurso #1 de fitness basado en evidencia.</p>
+        <nav>
+            <a href="index.html">Inicio</a> | 
+            <a href="privacidad.html">Política de Privacidad</a> | 
+            <a href="contacto.html">Contacto</a>
+        </nav>
+        <hr style="width: 50px; border: 1px solid var(--rojo); margin: 20px auto;">
+        <p style="font-size: 0.8rem; opacity: 0.7;">&copy; 2026 Sport & Fitness Chile. Todos los derechos reservados.</p>
+    </footer>
+
 </body>
 </html>
