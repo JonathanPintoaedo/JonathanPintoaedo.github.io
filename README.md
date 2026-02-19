@@ -1,4 +1,4 @@
-# Sport & Fitness Chile — Artículos HTML (AdSense Ready)
+# Sport & Fitness Chile — Artículos HTML
 
 Este repositorio contiene páginas HTML estáticas (artículos) con un diseño limpio, responsive y orientado a SEO, listas para publicarse en un hosting (dominio propio recomendado) y posteriormente solicitar/aplicar **Google AdSense**.
 
@@ -19,4 +19,5 @@ Cada archivo incluye:
 - Responsive para móvil/tablet
 
 ---
+
 
