@@ -1,0 +1,441 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Nutrición para Deportistas | Sport & Fitness Chile</title>
+  <meta name="description" content="Nutrición para deportistas: guía completa con macros, timing, hidratación, ejemplos de menú, suplementación básica y estrategias para rendimiento, ganancia muscular y pérdida de grasa." />
+
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700;900&display=swap" rel="stylesheet">
+
+  <style>
+    :root{
+      --rojo:#d32f2f;
+      --negro:#1a1a1a;
+      --gris-claro:#f4f4f4;
+      --blanco:#ffffff;
+      --azul-suave:#e3f2fd;
+      --verde-suave:#e8f5e9;
+      --amarillo-suave:#fff8e1;
+      --morado-suave:#f3e5f5;
+      --rojo-suave:#ffebee;
+    }
+
+    body{
+      font-family:'Montserrat', sans-serif;
+      margin:0;
+      padding:0;
+      color:#333;
+      line-height:1.8;
+      background-color:var(--gris-claro);
+    }
+
+    /* Hero del Artículo */
+    .hero-article{
+      background: linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.7)),
+                  url('https://images.unsplash.com/photo-1514996937319-344454492b37?auto=format&fit=crop&w=1350&q=80');
+      background-size:cover;
+      background-position:center;
+      height:40vh;
+      display:flex;
+      justify-content:center;
+      align-items:center;
+      text-align:center;
+      color:var(--blanco);
+    }
+
+    .hero-article h1{
+      font-size:2.5rem;
+      font-weight:900;
+      text-transform:uppercase;
+      padding:0 20px;
+      margin:0;
+    }
+
+    /* Contenido */
+    .container{
+      max-width:850px;
+      margin:-40px auto 50px;
+      background:var(--blanco);
+      padding:40px;
+      border-radius:12px;
+      box-shadow:0 10px 30px rgba(0,0,0,0.1);
+    }
+
+    h2{
+      color:var(--rojo);
+      border-left:5px solid var(--rojo);
+      padding-left:15px;
+      margin-top:40px;
+      text-transform:uppercase;
+    }
+
+    h3{
+      margin-top:25px;
+      color:var(--negro);
+    }
+
+    .equipamiento-box{
+      background:var(--azul-suave);
+      border-radius:8px;
+      padding:20px;
+      margin:20px 0;
+    }
+
+    .tip-box{
+      background:var(--verde-suave);
+      border-radius:8px;
+      padding:20px;
+      margin:20px 0;
+      border-left:6px solid #2e7d32;
+    }
+
+    .warning-box{
+      background:var(--amarillo-suave);
+      border-radius:8px;
+      padding:20px;
+      margin:20px 0;
+      border-left:6px solid #f9a825;
+    }
+
+    .plan-box{
+      background:var(--morado-suave);
+      border-radius:8px;
+      padding:20px;
+      margin:20px 0;
+      border-left:6px solid #7b1fa2;
+    }
+
+    .checklist-box{
+      background:var(--rojo-suave);
+      border-radius:8px;
+      padding:20px;
+      margin:20px 0;
+      border-left:6px solid var(--rojo);
+    }
+
+    .ejercicio-card{
+      background:var(--gris-claro);
+      padding:20px;
+      border-radius:8px;
+      margin-bottom:15px;
+      border-bottom:3px solid var(--rojo);
+    }
+
+    .tag{
+      display:inline-block;
+      font-size:0.85rem;
+      padding:4px 10px;
+      border-radius:999px;
+      background:#fff;
+      border:1px solid #ddd;
+      margin:6px 6px 0 0;
+    }
+
+    .mini{
+      font-size:0.95rem;
+      opacity:0.95;
+    }
+
+    .lista{
+      margin:10px 0 0 20px;
+    }
+
+    .tabla-wrap{
+      overflow-x:auto;
+      margin:15px 0;
+    }
+
+    table{
+      width:100%;
+      border-collapse:collapse;
+      min-width:680px;
+      background:#fff;
+      border-radius:10px;
+      overflow:hidden;
+      box-shadow:0 6px 18px rgba(0,0,0,0.06);
+    }
+
+    th, td{
+      padding:12px 14px;
+      border-bottom:1px solid #eee;
+      text-align:left;
+      vertical-align:top;
+      font-size:0.95rem;
+    }
+
+    th{
+      background:var(--negro);
+      color:var(--blanco);
+      font-weight:700;
+      letter-spacing:0.2px;
+    }
+
+    tr:last-child td{ border-bottom:none; }
+
+    .btn-volver{
+      display:inline-block;
+      margin-top:30px;
+      color:var(--rojo);
+      text-decoration:none;
+      font-weight:bold;
+    }
+
+    footer{
+      background:var(--negro);
+      color:var(--blanco);
+      text-align:center;
+      padding:40px 20px;
+    }
+
+    footer nav a{
+      color:var(--blanco);
+      text-decoration:none;
+      margin:0 10px;
+    }
+
+    @media (max-width: 768px){
+      .container{ margin-top:0; border-radius:0; padding:20px; }
+      .hero-article h1{ font-size:1.8rem; }
+      table{ min-width:540px; }
+    }
+  </style>
+</head>
+
+<body>
+
+  <header class="hero-article">
+    <h1>Nutrición para Deportistas: Guía Completa</h1>
+  </header>
+
+  <main class="container">
+    <p>
+      La nutrición deportiva es mucho más que “comer sano”. Se trata de <strong>alimentar el rendimiento</strong>:
+      energía para entrenar, nutrientes para recuperarte y estrategia para llegar a tus objetivos (ganar músculo,
+      bajar grasa, mejorar marcas o mantener salud). Con un plan simple y consistente puedes notar mejoras en
+      fuerza, resistencia, composición corporal y sensación general de bienestar.
+    </p>
+
+    <div class="tip-box">
+      <strong>Principio clave:</strong> la mejor dieta para deportistas es la que puedes sostener.
+      Prioriza hábitos (proteína, frutas/verduras, hidratación, timing básico) antes de obsesionarte con detalles.
+      <div class="mini">
+        <span class="tag">Rendimiento</span>
+        <span class="tag">Recuperación</span>
+        <span class="tag">Composición corporal</span>
+        <span class="tag">Energía</span>
+      </div>
+    </div>
+
+    <h2>Fundamentos: calorías y balance energético</h2>
+    <p>
+      Tu cuerpo usa energía (calorías) para vivir y entrenar. Según tu objetivo:
+    </p>
+
+    <div class="ejercicio-card">
+      <strong>Objetivos y calorías</strong>
+      <ul class="lista">
+        <li><strong>Ganar músculo:</strong> leve superávit calórico + entrenamiento de fuerza + suficiente proteína.</li>
+        <li><strong>Perder grasa:</strong> déficit moderado (sin extremos) + fuerza para mantener músculo.</li>
+        <li><strong>Rendir mejor:</strong> calorías suficientes y carbohidratos estratégicos, especialmente en entrenamientos exigentes.</li>
+        <li><strong>Mantener:</strong> equilibrio + hábitos consistentes.</li>
+      </ul>
+      <p class="mini">Si entrenas duro y comes demasiado poco, tu rendimiento cae y la recuperación se hace lenta.</p>
+    </div>
+
+    <h2>Macronutrientes: proteína, carbohidratos y grasas</h2>
+
+    <h3>Proteína (reparación y masa muscular)</h3>
+    <div class="equipamiento-box">
+      <p>
+        La proteína ayuda a construir y reparar tejido muscular. Para deportistas, suele ser útil
+        repartirla en 3–5 comidas al día.
+      </p>
+      <ul class="lista">
+        <li><strong>Fuentes:</strong> pollo, pavo, huevos, pescados, carne magra, legumbres, tofu, lácteos altos en proteína.</li>
+        <li><strong>Tip práctico:</strong> apunta a una porción proteica en cada comida principal.</li>
+      </ul>
+      <p class="mini">Si eres vegetariano/vegano, combina legumbres + cereales y prioriza variedad.</p>
+    </div>
+
+    <h3>Carbohidratos (combustible para el entrenamiento)</h3>
+    <div class="ejercicio-card">
+      <p>
+        Los carbohidratos son el “combustible premium” para entrenamientos intensos (fuerza pesada, HIIT, running,
+        deportes de equipo). No son enemigos: son una herramienta.
+      </p>
+      <ul class="lista">
+        <li><strong>Fuentes:</strong> arroz, papas, avena, pan, pastas, frutas, legumbres, quinoa.</li>
+        <li><strong>Momento clave:</strong> alrededor del entrenamiento suelen mejorar el rendimiento.</li>
+      </ul>
+    </div>
+
+    <h3>Grasas (hormonas, salud y saciedad)</h3>
+    <div class="ejercicio-card">
+      <p>
+        Las grasas apoyan salud hormonal, absorción de vitaminas y saciedad. No conviene eliminarlas.
+      </p>
+      <ul class="lista">
+        <li><strong>Fuentes:</strong> aceite de oliva, palta, frutos secos, semillas, pescados grasos.</li>
+        <li><strong>Tip:</strong> si tu digestión se siente pesada pre-entreno, baja grasas en esa comida y muévelas a otras.</li>
+      </ul>
+    </div>
+
+    <h2>Timing: qué comer antes y después de entrenar</h2>
+    <p>
+      No necesitas una “ventana mágica” perfecta, pero sí conviene ordenar un par de cosas para rendir mejor
+      y recuperarte más rápido.
+    </p>
+
+    <div class="plan-box">
+      <strong>Antes de entrenar (60–180 min)</strong>
+      <ul class="lista">
+        <li><strong>Objetivo:</strong> llegar con energía y sin pesadez.</li>
+        <li><strong>Ideal:</strong> carbohidrato + proteína moderada, baja grasa y fibra si te cae pesado.</li>
+        <li><strong>Ejemplos:</strong> yogur alto en proteína + banana / sándwich de pavo / avena con leche.</li>
+      </ul>
+      <strong>Después de entrenar (0–3 horas)</strong>
+      <ul class="lista">
+        <li><strong>Objetivo:</strong> recuperar y reponer.</li>
+        <li><strong>Ideal:</strong> proteína + carbohidrato (especialmente si entrenaste fuerte o largo).</li>
+        <li><strong>Ejemplos:</strong> arroz + pollo / omelette + pan / legumbres + quinoa.</li>
+      </ul>
+      <p class="mini">Si entrenas temprano y no te entra comida, un batido simple puede ayudarte.</p>
+    </div>
+
+    <h2>Hidratación y electrolitos</h2>
+    <p>
+      La hidratación impacta fuerza, resistencia y concentración. No esperes a tener sed extrema.
+      Si sudas mucho o entrenas largo, los <strong>electrolitos</strong> (sodio, potasio, etc.) ayudan.
+    </p>
+
+    <div class="warning-box">
+      <strong>Señales de alerta:</strong> dolor de cabeza, calambres frecuentes, fatiga rara, orina muy oscura.
+      Ajusta agua y, si entrenas con calor, considera bebidas con electrolitos.
+    </div>
+
+    <h2>Guía rápida por objetivo</h2>
+
+    <div class="tabla-wrap">
+      <table>
+        <thead>
+          <tr>
+            <th>Objetivo</th>
+            <th>Qué priorizar</th>
+            <th>Qué evitar</th>
+            <th>Estrategia simple</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><strong>Ganar músculo</strong></td>
+            <td>Leve superávit, proteína constante, carbohidratos alrededor del entreno</td>
+            <td>Comer “al ojo” sin control, saltarte proteína</td>
+            <td>+1 snack proteico diario y progresión en fuerza</td>
+          </tr>
+          <tr>
+            <td><strong>Bajar grasa</strong></td>
+            <td>Déficit moderado, proteína alta, frutas/verduras, pasos diarios</td>
+            <td>Dietas extremas, eliminar grupos sin razón</td>
+            <td>Plato: 1/2 verduras, 1/4 proteína, 1/4 carbohidrato</td>
+          </tr>
+          <tr>
+            <td><strong>Mejorar rendimiento</strong></td>
+            <td>Carbohidratos suficientes, hidratación, sueño</td>
+            <td>Entrenar duro “sin combustible”</td>
+            <td>Pre-entreno con carbs + post-entreno completo</td>
+          </tr>
+          <tr>
+            <td><strong>Mantener salud</strong></td>
+            <td>Consistencia, variedad, proteína adecuada</td>
+            <td>Obsesión, extremos, poca fibra</td>
+            <td>80/20: base nutritiva + flexibilidad</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <h2>Ejemplos de menú diario (fácil y realista)</h2>
+    <p>
+      Estos son ejemplos (no una receta única). Ajusta por hambre, horarios y tipo de entrenamiento.
+    </p>
+
+    <div class="ejercicio-card">
+      <strong>Ejemplo 1: Día de fuerza (entreno tarde)</strong>
+      <ul class="lista">
+        <li><strong>Desayuno:</strong> avena + leche/yogur + fruta + frutos secos.</li>
+        <li><strong>Almuerzo:</strong> pollo/legumbres + arroz/papas + ensalada.</li>
+        <li><strong>Pre-entreno:</strong> sándwich + fruta (o yogur + banana).</li>
+        <li><strong>Cena:</strong> omelette o pescado + carbohidrato moderado + verduras.</li>
+      </ul>
+    </div>
+
+    <div class="ejercicio-card">
+      <strong>Ejemplo 2: Día de cardio (mañana)</strong>
+      <ul class="lista">
+        <li><strong>Pre (opcional):</strong> banana o tostada con miel si te sirve.</li>
+        <li><strong>Post-desayuno:</strong> huevos + pan + fruta (o batido con proteína + avena).</li>
+        <li><strong>Almuerzo:</strong> carne magra/tofu + quinoa/arroz + verduras.</li>
+        <li><strong>Merienda:</strong> yogur alto en proteína + fruta.</li>
+        <li><strong>Cena:</strong> ensalada grande con proteína + pan/papas según energía.</li>
+      </ul>
+    </div>
+
+    <h2>Suplementación: lo útil (y lo que no es prioridad)</h2>
+    <p>
+      Los suplementos no reemplazan comida, pero algunos sí tienen evidencia y practicidad.
+      Si tu base (calorías, proteína, sueño) está floja, ningún suplemento “lo arregla”.
+    </p>
+
+    <div class="checklist-box">
+      <strong>Suplementos comunes (prioridad práctica)</strong>
+      <ul class="lista">
+        <li><strong>Proteína en polvo:</strong> útil si no llegas con comida (conveniencia).</li>
+        <li><strong>Creatina:</strong> ayuda en fuerza/potencia para muchas personas (uso consistente).</li>
+        <li><strong>Cafeína:</strong> mejora rendimiento en algunos casos (ojo con ansiedad/sueño).</li>
+        <li><strong>Omega-3:</strong> si consumes poco pescado (según contexto).</li>
+      </ul>
+      <p class="mini">
+        Si tienes condiciones médicas, estás embarazada o tomas medicamentos, consulta con un profesional antes de suplementar.
+      </p>
+    </div>
+
+    <h2>Errores frecuentes en nutrición deportiva</h2>
+    <div class="ejercicio-card">
+      <strong>Lo que más frena resultados</strong>
+      <ul class="lista">
+        <li>Comer muy poco “para definir” y perder rendimiento/masa muscular.</li>
+        <li>Entrenar intenso sin carbohidratos y luego sentirte sin energía siempre.</li>
+        <li>Consumir proteína solo en una comida del día.</li>
+        <li>Descuidar hidratación, especialmente en calor o entrenos largos.</li>
+        <li>“Compensar” excesos con restricción extrema (ciclo difícil de sostener).</li>
+      </ul>
+    </div>
+
+    <h2>Checklist rápido (para hacerlo simple)</h2>
+    <div class="tip-box">
+      <ul class="lista">
+        <li>✅ Proteína en 3–5 momentos del día.</li>
+        <li>✅ Fruta y/o verdura en la mayoría de comidas.</li>
+        <li>✅ Carbohidratos estratégicos si entrenas duro.</li>
+        <li>✅ Agua diariamente (más si sudas mucho).</li>
+        <li>✅ Cena que ayude al sueño (evita comer pesadísimo justo antes de dormir).</li>
+      </ul>
+    </div>
+
+    <h2>Conclusión</h2>
+    <p>
+      La nutrición para deportistas no tiene que ser complicada: come suficiente, prioriza proteína,
+      usa carbohidratos para rendir, cuida grasas saludables e hidrátate. Si mantienes estos pilares,
+      tu cuerpo responde: entrenas mejor, recuperas más rápido y avanzas hacia tus metas con menos estrés.
+    </p>
+
+    <!--<a class="btn-volver" href="#">← Volver</a>-->
+  </main>
+
+   <footer>
+        <nav><a href="index.html">Inicio</a> | <a href="contacto.html">Contacto</a> | <a href="privacidad.html">Privacidad</a></nav>
+    </footer>
+
+</body>
+</html>

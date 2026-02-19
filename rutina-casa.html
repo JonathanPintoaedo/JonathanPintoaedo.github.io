@@ -1,0 +1,586 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Rutina de Gimnasio en Casa | Sport & Fitness Chile</title>
+  <meta name="description" content="Rutina de gimnasio en casa: guía completa con planificación semanal, ejercicios por objetivo, progresión, técnica, calentamiento, nutrición y recuperación para entrenar sin gastar de más." />
+
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700;900&display=swap" rel="stylesheet">
+
+  <style>
+    :root{
+      --rojo:#d32f2f;
+      --negro:#1a1a1a;
+      --gris-claro:#f4f4f4;
+      --blanco:#ffffff;
+      --azul-suave:#e3f2fd;
+      --verde-suave:#e8f5e9;
+      --amarillo-suave:#fff8e1;
+      --morado-suave:#f3e5f5;
+    }
+
+    body{
+      font-family:'Montserrat', sans-serif;
+      margin:0;
+      padding:0;
+      color:#333;
+      line-height:1.8;
+      background-color:var(--gris-claro);
+    }
+
+    /* Hero del Artículo */
+    .hero-article{
+      background: linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.7)),
+                  url('https://images.unsplash.com/photo-1517836357463-d25dfeac3438?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80');
+      background-size:cover;
+      background-position:center;
+      height:40vh;
+      display:flex;
+      justify-content:center;
+      align-items:center;
+      text-align:center;
+      color:var(--blanco);
+    }
+
+    .hero-article h1{
+      font-size:2.5rem;
+      font-weight:900;
+      text-transform:uppercase;
+      padding:0 20px;
+      margin:0;
+    }
+
+    .container{
+      max-width:850px;
+      margin:-40px auto 50px;
+      background:var(--blanco);
+      padding:40px;
+      border-radius:12px;
+      box-shadow:0 10px 30px rgba(0,0,0,0.1);
+    }
+
+    h2{
+      color:var(--rojo);
+      border-left:5px solid var(--rojo);
+      padding-left:15px;
+      margin-top:40px;
+      text-transform:uppercase;
+    }
+
+    h3{
+      margin-top:25px;
+      color:var(--negro);
+    }
+
+    .equipamiento-box{
+      background:var(--azul-suave);
+      border-radius:8px;
+      padding:20px;
+      margin:20px 0;
+    }
+
+    .tip-box{
+      background:var(--verde-suave);
+      border-radius:8px;
+      padding:20px;
+      margin:20px 0;
+      border-left:6px solid #2e7d32;
+    }
+
+    .warning-box{
+      background:var(--amarillo-suave);
+      border-radius:8px;
+      padding:20px;
+      margin:20px 0;
+      border-left:6px solid #f9a825;
+    }
+
+    .plan-box{
+      background:var(--morado-suave);
+      border-radius:8px;
+      padding:20px;
+      margin:20px 0;
+      border-left:6px solid #7b1fa2;
+    }
+
+    .ejercicio-card{
+      background:var(--gris-claro);
+      padding:20px;
+      border-radius:8px;
+      margin-bottom:15px;
+      border-bottom:3px solid var(--rojo);
+    }
+
+    .ejercicio-card strong{
+      color:var(--negro);
+    }
+
+    .tag{
+      display:inline-block;
+      font-size:0.85rem;
+      padding:4px 10px;
+      border-radius:999px;
+      background:#fff;
+      border:1px solid #ddd;
+      margin:6px 6px 0 0;
+    }
+
+    .mini{
+      font-size:0.95rem;
+      opacity:0.95;
+    }
+
+    .lista{
+      margin:10px 0 0 20px;
+    }
+
+    .tabla-wrap{
+      overflow-x:auto;
+      margin:15px 0;
+    }
+
+    table{
+      width:100%;
+      border-collapse:collapse;
+      min-width:640px;
+      background:#fff;
+      border-radius:10px;
+      overflow:hidden;
+      box-shadow:0 6px 18px rgba(0,0,0,0.06);
+    }
+
+    th, td{
+      padding:12px 14px;
+      border-bottom:1px solid #eee;
+      text-align:left;
+      vertical-align:top;
+      font-size:0.95rem;
+    }
+
+    th{
+      background:var(--negro);
+      color:var(--blanco);
+      font-weight:700;
+      letter-spacing:0.2px;
+    }
+
+    tr:last-child td{ border-bottom:none; }
+
+    .btn-volver{
+      display:inline-block;
+      margin-top:30px;
+      color:var(--rojo);
+      text-decoration:none;
+      font-weight:bold;
+    }
+
+    footer{
+      background:var(--negro);
+      color:var(--blanco);
+      text-align:center;
+      padding:40px 20px;
+    }
+
+    footer nav a{
+      color:var(--blanco);
+      text-decoration:none;
+      margin:0 10px;
+    }
+
+    @media (max-width: 768px){
+      .container{ margin-top:0; border-radius:0; padding:20px; }
+      .hero-article h1{ font-size:1.8rem; }
+      table{ min-width:520px; }
+    }
+  </style>
+</head>
+
+<body>
+
+  <header class="hero-article">
+    <h1>Rutina de Gimnasio en Casa: Guía Completa</h1>
+  </header>
+
+  <main class="container">
+    <p>
+      Entrenar en casa ya no es “una alternativa”: para muchas personas es la forma más práctica de mantenerse en forma.
+      No necesitas un gimnasio gigante ni máquinas carísimas para ganar fuerza, mejorar tu condición y verte mejor.
+      Con una buena estructura (calentamiento + trabajo principal + progresión + recuperación) puedes lograr resultados
+      reales con poco espacio y un presupuesto controlado.
+    </p>
+
+    <div class="tip-box">
+      <strong>Idea clave:</strong> tu cuerpo es tu primera “máquina”. Si dominas sentadillas, empujes, jalones y bisagras
+      de cadera con buena técnica, luego cualquier implemento multiplica tus resultados.
+      <div class="mini">
+        <span class="tag">Fuerza</span>
+        <span class="tag">Tonificación</span>
+        <span class="tag">Bajar grasa</span>
+        <span class="tag">Salud</span>
+      </div>
+    </div>
+
+    <h2>¿Qué necesitas para empezar?</h2>
+    <div class="equipamiento-box">
+      <p>
+        No necesitas máquinas costosas. Con compras inteligentes en tiendas deportivas o incluso en Marketplace,
+        puedes armar un kit funcional y progresivo.
+      </p>
+      <ul class="lista">
+        <li><strong>Colchoneta</strong> (o alfombra firme): comodidad para suelo, core y movilidad.</li>
+        <li><strong>Bandas elásticas</strong> (una ligera y una media/alta): sirven para glúteos, espalda, hombros y movilidad.</li>
+        <li><strong>Mancuernas ajustables</strong> o un par fijo (ideal): facilitan progresar en fuerza.</li>
+        <li><strong>Kettlebell</strong> (opcional): excelente para bisagra de cadera y cardio de fuerza.</li>
+        <li><strong>Barra de dominadas</strong> para puerta (opcional): el mejor “jalón” casero.</li>
+        <li><strong>Banco</strong> o silla estable: press, fondos, step-ups, búlgaras.</li>
+      </ul>
+      <p class="mini">
+        <strong>Tip:</strong> si hoy no puedes comprar nada, empieza con <em>peso corporal</em> y una banda. La constancia vale más que el equipo.
+      </p>
+    </div>
+
+    <h2>Cómo armar tu espacio de entrenamiento</h2>
+    <p>
+      Con <strong>2 x 2 metros</strong> ya puedes entrenar bien. Prioriza seguridad: piso estable, ventilación,
+      y un lugar donde puedas moverte sin golpear muebles. Ten a mano agua, una toalla y un temporizador
+      (el del celular sirve perfecto).
+    </p>
+
+    <div class="warning-box">
+      <strong>Seguridad primero:</strong> evita sillas inestables, superficies resbalosas y muebles con ruedas.
+      Si vas a usar barra de dominadas, revisa el marco de la puerta y sigue las instrucciones del fabricante.
+    </div>
+
+    <h2>Objetivos: ¿qué buscas lograr?</h2>
+    <p>
+      Antes de elegir ejercicios, define tu objetivo principal. La rutina cambia según lo que quieras priorizar:
+    </p>
+    <div class="ejercicio-card">
+      <strong>1) Ganar músculo / tonificar</strong>
+      <p class="mini">Enfócate en progresar (más repeticiones, más dificultad o más peso) y en entrenar cerca del fallo con buena técnica.</p>
+    </div>
+    <div class="ejercicio-card">
+      <strong>2) Bajar grasa</strong>
+      <p class="mini">La base es el balance energético (alimentación), pero combina fuerza + cardio inteligente para mantener músculo y acelerar el gasto.</p>
+    </div>
+    <div class="ejercicio-card">
+      <strong>3) Mejorar condición / resistencia</strong>
+      <p class="mini">Usa circuitos, intervalos y trabajos full body con descansos cortos, sin abandonar la técnica.</p>
+    </div>
+    <div class="ejercicio-card">
+      <strong>4) Salud / postura / movilidad</strong>
+      <p class="mini">Añade movilidad, core y espalda. Mucho “tirón” (remo/bandas) para equilibrar el exceso de pantalla.</p>
+    </div>
+
+    <h2>Calentamiento y activación (8–12 minutos)</h2>
+    <p>
+      El calentamiento prepara articulaciones, sube la temperatura, mejora el rango de movimiento y reduce el riesgo de lesión.
+      Hazlo siempre, incluso si entrenas 20 minutos.
+    </p>
+
+    <div class="ejercicio-card">
+      <strong>Calentamiento recomendado (sin equipo)</strong>
+      <ul class="lista">
+        <li>1–2 min: movilidad de cuello, hombros y cadera (suave).</li>
+        <li>1–2 min: jumping jacks o marcha rápida en el lugar.</li>
+        <li>8–10 rep: bisagra de cadera (como peso muerto sin peso).</li>
+        <li>8–10 rep: sentadilla lenta (pausa 1s abajo).</li>
+        <li>8–12 rep: push-ups inclinadas (manos en mesa/silla) o normales.</li>
+        <li>20–30s: plancha (o plancha con rodillas).</li>
+      </ul>
+      <p class="mini"><strong>Regla:</strong> termina el calentamiento sintiéndote “listo”, no cansado.</p>
+    </div>
+
+    <h2>Rutina semanal en casa (4 días) – Full Body inteligente</h2>
+    <p>
+      Este formato funciona muy bien si quieres resultados completos con poco tiempo:
+      entrenas todo el cuerpo 4 veces por semana alternando énfasis. Puedes hacerlo con peso corporal
+      y sumar mancuernas/bandas cuando estés listo.
+    </p>
+
+    <div class="plan-box">
+      <strong>Calendario sugerido:</strong>
+      <ul class="lista">
+        <li><strong>Lunes:</strong> Full Body A (fuerza base)</li>
+        <li><strong>Martes:</strong> Full Body B (tirón + piernas)</li>
+        <li><strong>Jueves:</strong> Full Body A (variaciones / progresión)</li>
+        <li><strong>Sábado:</strong> Full Body B (condición + core)</li>
+      </ul>
+      <p class="mini">Miércoles, viernes y domingo: descanso, caminata o movilidad 10–20 min.</p>
+    </div>
+
+    <h3>Full Body A (45–60 min)</h3>
+    <div class="ejercicio-card">
+      <strong>1) Sentadilla</strong>
+      <p class="mini">3–4 series x 8–15 reps · Descanso 60–90s</p>
+      <ul class="lista">
+        <li>Principiante: sentadilla a silla.</li>
+        <li>Intermedio: sentadilla goblet con mancuerna/kettlebell.</li>
+        <li>Avanzado: tempo 3s bajada + pausa 1s.</li>
+      </ul>
+    </div>
+
+    <div class="ejercicio-card">
+      <strong>2) Empuje (pecho/hombro)</strong>
+      <p class="mini">3–4 series x 6–12 reps · Descanso 60–90s</p>
+      <ul class="lista">
+        <li>Push-ups inclinadas (más fácil) → push-ups normales → push-ups con pies elevados.</li>
+        <li>Con equipo: press con mancuernas en el suelo o en banco.</li>
+      </ul>
+    </div>
+
+    <div class="ejercicio-card">
+      <strong>3) Bisagra de cadera (glúteo/isquios)</strong>
+      <p class="mini">3–4 series x 8–15 reps · Descanso 60–90s</p>
+      <ul class="lista">
+        <li>Puente de glúteos en el suelo.</li>
+        <li>Peso muerto rumano con mancuernas (si tienes).</li>
+        <li>Hip thrust apoyado en silla/sofá (si es estable).</li>
+      </ul>
+    </div>
+
+    <div class="ejercicio-card">
+      <strong>4) Core</strong>
+      <p class="mini">2–3 series · 30–45s · Descanso 30–60s</p>
+      <ul class="lista">
+        <li>Plancha frontal</li>
+        <li>Dead bug (control abdominal)</li>
+        <li>Plancha lateral (alternando lados)</li>
+      </ul>
+    </div>
+
+    <h3>Full Body B (45–60 min)</h3>
+    <div class="ejercicio-card">
+      <strong>1) Zancadas / Split squat</strong>
+      <p class="mini">3–4 series x 8–12 por pierna · Descanso 60–90s</p>
+      <ul class="lista">
+        <li>Principiante: zancadas cortas y controladas, sin prisa.</li>
+        <li>Intermedio: búlgaras (pie atrás en silla estable).</li>
+        <li>Con peso: mancuerna en cada mano o goblet.</li>
+      </ul>
+    </div>
+
+    <div class="ejercicio-card">
+      <strong>2) Tirón (espalda)</strong>
+      <p class="mini">3–4 series x 8–15 reps · Descanso 60–90s</p>
+      <ul class="lista">
+        <li>Con banda: remo sentado o remo de pie.</li>
+        <li>Con mancuernas: remo a una mano apoyado en silla.</li>
+        <li>Con barra: dominadas asistidas con banda (si puedes).</li>
+      </ul>
+      <p class="mini"><strong>Nota:</strong> si entrenas mucho sentado, prioriza este bloque. La espalda lo agradece.</p>
+    </div>
+
+    <div class="ejercicio-card">
+      <strong>3) Hombros / brazos (accesorio)</strong>
+      <p class="mini">2–3 series x 10–20 reps · Descanso 45–75s</p>
+      <ul class="lista">
+        <li>Elevaciones laterales con botellas/mancuernas (control).</li>
+        <li>Curl bíceps con banda/mancuernas.</li>
+        <li>Extensión tríceps con banda o fondos en banco (si no molesta el hombro).</li>
+      </ul>
+    </div>
+
+    <div class="ejercicio-card">
+      <strong>4) Finisher opcional (6–10 min)</strong>
+      <p class="mini">Para acondicionamiento y quema calórica sin alargar demasiado la sesión.</p>
+      <ul class="lista">
+        <li>EMOM 8 min: minuto impar 10–15 sentadillas / minuto par 8–12 push-ups (ajusta a tu nivel).</li>
+        <li>O 6 rondas: 30s mountain climbers + 30s descanso.</li>
+      </ul>
+    </div>
+
+    <h2>Progresión: cómo mejorar semana a semana</h2>
+    <p>
+      La progresión es lo que “transforma” una rutina en resultados. Si repites lo mismo con el mismo esfuerzo,
+      te estancas. Aquí tienes formas simples de progresar (elige 1 por vez):
+    </p>
+
+    <div class="ejercicio-card">
+      <strong>Métodos de progresión (sin volverte loco)</strong>
+      <ul class="lista">
+        <li><strong>Más repeticiones:</strong> por ejemplo, 10 → 12 → 15.</li>
+        <li><strong>Más series:</strong> de 3 a 4 series en el ejercicio principal.</li>
+        <li><strong>Menos descanso:</strong> 90s → 75s → 60s.</li>
+        <li><strong>Más dificultad:</strong> push-up inclinada → normal → pies elevados.</li>
+        <li><strong>Más carga:</strong> mancuernas más pesadas o banda más dura.</li>
+        <li><strong>Tempo:</strong> bajar lento (3 segundos) y subir fuerte controlando.</li>
+      </ul>
+    </div>
+
+    <div class="warning-box">
+      <strong>Importante:</strong> progresar no es entrenar con dolor articular.
+      Si duele una articulación (hombro, rodilla, lumbar), ajusta variante, rango, carga o técnica.
+      “Arde el músculo” es normal; “duele la articulación” no.
+    </div>
+
+    <h2>Rutinas rápidas según tu tiempo (20, 30 o 45 minutos)</h2>
+    <p>Si tu agenda está apretada, usa estos formatos y mantén la consistencia.</p>
+
+    <div class="tabla-wrap">
+      <table>
+        <thead>
+          <tr>
+            <th>Tiempo</th>
+            <th>Estructura</th>
+            <th>Ejemplo</th>
+            <th>Consejo</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><strong>20 min</strong></td>
+            <td>Calentamiento 3–4 min + circuito 12–15 min + estiramiento 2 min</td>
+            <td>Sentadilla + push-up + remo con banda + plancha (3–4 rondas)</td>
+            <td>Prioriza técnica, no velocidad.</td>
+          </tr>
+          <tr>
+            <td><strong>30 min</strong></td>
+            <td>Calentamiento 6–8 min + 2 bloques de fuerza + core</td>
+            <td>Bloque A: sentadilla/puente · Bloque B: push-up/remo</td>
+            <td>Descansos cortos (45–75s) funcionan muy bien.</td>
+          </tr>
+          <tr>
+            <td><strong>45–60 min</strong></td>
+            <td>Calentamiento + fuerza completa + accesorios + finisher</td>
+            <td>Full Body A o B del plan semanal</td>
+            <td>Mejor para ganar músculo y fuerza sostenida.</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <h2>Técnica esencial (para no lesionarte y rendir más)</h2>
+    <div class="ejercicio-card">
+      <strong>Checklist rápido</strong>
+      <ul class="lista">
+        <li><strong>Respira y bracea:</strong> abdomen firme antes de empujar o levantar.</li>
+        <li><strong>Columna neutra:</strong> evita “encorvar” la zona lumbar en bisagras y planchas.</li>
+        <li><strong>Rango controlado:</strong> baja hasta donde puedas sin perder postura.</li>
+        <li><strong>Reps con intención:</strong> sube “fuerte”, baja “controlado”.</li>
+        <li><strong>Deja 1–3 reps en recámara</strong> en la mayoría de series (no hace falta morir siempre).</li>
+      </ul>
+    </div>
+
+    <h2>Cardio en casa (sin perder músculo)</h2>
+    <p>
+      El cardio es un gran aliado para salud y gasto calórico, pero no necesitas hacerlo a diario.
+      Si tu objetivo es bajar grasa, combina 2–3 sesiones semanales de 15–25 minutos con la rutina de fuerza.
+    </p>
+
+    <div class="ejercicio-card">
+      <strong>Opciones simples</strong>
+      <ul class="lista">
+        <li><strong>Zona 2 (suave):</strong> caminata rápida, subir escaleras, bici estática (20–40 min).</li>
+        <li><strong>Intervalos (corto):</strong> 10 rondas de 20s rápido + 40s suave (10 min).</li>
+        <li><strong>Circuito cardio-fuerza:</strong> 5 rondas de 30s sentadilla + 30s jumping jacks + 30s descanso.</li>
+      </ul>
+      <p class="mini"><strong>Tip:</strong> si tus piernas quedan destruidas para fuerza, baja el cardio intenso y sube el suave.</p>
+    </div>
+
+    <h2>Nutrición básica para apoyar tu rutina</h2>
+    <p>
+      La rutina hace su parte, pero la comida define si subes músculo, bajas grasa o te estancas.
+      Manténlo simple:
+    </p>
+
+    <div class="ejercicio-card">
+      <strong>Reglas prácticas</strong>
+      <ul class="lista">
+        <li><strong>Proteína en cada comida:</strong> ayuda a recuperar y mantener masa muscular.</li>
+        <li><strong>Verduras y frutas a diario:</strong> micronutrientes + saciedad.</li>
+        <li><strong>Agua:</strong> rendimiento y recuperación mejoran con hidratación.</li>
+        <li><strong>Si quieres bajar grasa:</strong> déficit calórico moderado (sin extremos).</li>
+        <li><strong>Si quieres ganar músculo:</strong> leve superávit + progresión en cargas.</li>
+      </ul>
+      <p class="mini">Si entrenas fuerte y duermes poco, el cuerpo lo nota. Prioriza hábitos antes de “suplementos mágicos”.</p>
+    </div>
+
+    <h2>Recuperación: el “entrenamiento invisible”</h2>
+    <p>
+      No mejoras mientras entrenas, mejoras cuando descansas. Una rutina casera sostenible depende de recuperación:
+    </p>
+
+    <div class="tip-box">
+      <ul class="lista">
+        <li><strong>Sueño:</strong> apunta a 7–9 horas cuando puedas.</li>
+        <li><strong>Movilidad:</strong> 8–12 minutos en días de descanso ayudan a sentirte mejor.</li>
+        <li><strong>Pasos diarios:</strong> caminar es un “quemador de grasa” subestimado.</li>
+        <li><strong>Deload:</strong> cada 4–8 semanas baja volumen o intensidad 1 semana si te notas muy cansado.</li>
+      </ul>
+    </div>
+
+    <h2>Errores comunes (y cómo evitarlos)</h2>
+    <div class="ejercicio-card">
+      <strong>Los 7 errores típicos</strong>
+      <ul class="lista">
+        <li>Entrenar “al azar” sin plan semanal.</li>
+        <li>No calentar y luego culpar al cuerpo.</li>
+        <li>Hacer solo abdominales esperando quemar grasa localizada.</li>
+        <li>Mucho empuje (pecho) y poco tirón (espalda).</li>
+        <li>Subir intensidad sin técnica (sobre todo en rodillas y lumbar).</li>
+        <li>No progresar: mismas reps, mismo peso, mismo todo.</li>
+        <li>Descansar mal: dormir poco, comer poco, estrés alto.</li>
+      </ul>
+    </div>
+
+    <h2>Plan de inicio (14 días) si eres principiante</h2>
+    <p>
+      Si llevas tiempo sin entrenar, empieza más suave y construye el hábito. Aquí tienes un plan de 2 semanas:
+    </p>
+
+    <div class="plan-box">
+      <strong>Semana 1 (3 días)</strong>
+      <ul class="lista">
+        <li>Sentadilla a silla 3x10–12</li>
+        <li>Push-ups inclinadas 3x8–12</li>
+        <li>Remo con banda 3x12–15</li>
+        <li>Puente glúteos 3x12–15</li>
+        <li>Plancha 3x20–30s</li>
+      </ul>
+      <strong>Semana 2 (4 días)</strong>
+      <ul class="lista">
+        <li>Repite el plan semanal Full Body A/B, pero con 2–3 series por ejercicio (no 4).</li>
+      </ul>
+      <p class="mini"><strong>Objetivo:</strong> terminar con energía, no destruido. En 2–4 semanas ya podrás empujar más.</p>
+    </div>
+
+    <h2>Preguntas frecuentes</h2>
+    <div class="ejercicio-card">
+      <strong>¿Cuánto tiempo tarda en verse el cambio?</strong>
+      <p class="mini">
+        Depende de tu punto de partida, constancia, sueño y alimentación. Muchas personas notan mejor energía y postura en 2–3 semanas.
+        Cambios visibles suelen aparecer en 6–12 semanas con continuidad.
+      </p>
+    </div>
+    <div class="ejercicio-card">
+      <strong>¿Puedo entrenar todos los días?</strong>
+      <p class="mini">
+        Puedes moverte a diario, pero no conviene hacer fuerza intensa todos los días al inicio. Alterna fuerza y días suaves (caminata/movilidad).
+      </p>
+    </div>
+    <div class="ejercicio-card">
+      <strong>¿Qué hago si no tengo dominadas o remo?</strong>
+      <p class="mini">
+        Usa bandas elásticas. El “tirón” es esencial para hombros sanos y postura. Si no tienes banda, improvisa con mochila con peso para remos.
+      </p>
+    </div>
+
+    <h2>Cierre: tu gimnasio cabe en casa</h2>
+    <p>
+      Una buena rutina en casa no se trata de tener más cosas, sino de <strong>hacer lo correcto</strong> con
+      consistencia: entrenar fuerza 3–4 días, progresar poco a poco, dormir mejor y comer razonablemente bien.
+      Si quieres, puedes convertir esta guía en tu plan de 8 semanas: repite el esquema, sube repeticiones,
+      añade carga y registra tus entrenamientos.
+    </p>
+
+    <!--<a class="btn-volver" href="#">← Volver</a>-->
+  </main>
+
+   <footer>
+        <nav><a href="index.html">Inicio</a> | <a href="contacto.html">Contacto</a> | <a href="privacidad.html">Privacidad</a></nav>
+    </footer>
+
+</body>
+</html>
